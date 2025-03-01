@@ -2,7 +2,6 @@ python -m baselines.run \
 --num_env=2 --alg=her --env=NeedleReach-v0 \
 --num_timesteps=1e5 \
 --policy_save_interval=5 \
---save_video_interval=30 \
 --demo_file=./surrol/data/demo/NeedleReach-v0_random_100.npz \
 --save_path=./policies/demo/NeedleReach-demo1e5_0 \
 --log_path=./logs/demo/NeedleReach-demo1e5_0 \
