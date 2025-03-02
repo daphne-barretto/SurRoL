@@ -57,18 +57,24 @@ class NeedleReachCurriculumLearning(PsmEnv):
         alg = 'ddpgcl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
             file_path = './logs/ddpgcl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
-            data = pd.read_csv(file_path)
-            if data.empty:
-                success_rate = 0
-            else:
-                success_rate = data['eval/return']
+            try:
+                data = pd.read_csv(file_path)
+                if data.empty:
+                    success_rate = 0.0
+                else:
+                    success_rate = data['eval/return']
+            except pd.errors.EmptyDataError:
+                success_rate = 0.0
         elif alg == 'hercl':
             file_path = './logs/hercl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
-            data = pd.read_csv(file_path)
-            if data.empty:
-                success_rate = 0
-            else:
-                success_rate = data['test/success_rate']
+            try:
+                data = pd.read_csv(file_path)
+                if data.empty:
+                    success_rate = 0.0
+                else:
+                    success_rate = data['test/success_rate']
+            except pd.errors.EmptyDataError:
+                success_rate = 0.0
         # set robot position to be between final_initial_pos and needle_pos based on the most recent success rate
         # so that the robot position is closer to the needle when the success rate is lower
         most_recent_success_rate = success_rate.iloc[-1]
