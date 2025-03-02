@@ -60,11 +60,17 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
         if alg == 'ddpgcl':
             file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
             data = pd.read_csv(file_path)
-            success_rate = data['eval/return']
+            if data.empty:
+                success_rate = 0
+            else:
+                success_rate = data['eval/return']
         elif alg == 'hercl':
             file_path = './logs/hercl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
             data = pd.read_csv(file_path)
-            success_rate = data['test/success_rate']
+            if data.empty:
+                success_rate = 0
+            else:
+                success_rate = data['test/success_rate']
         # set robot position to be between final_initial_pos and needle_pos based on the most recent success rate
         # so that the robot position is closer to the needle when the success rate is lower
         most_recent_success_rate = success_rate.iloc[-1]
