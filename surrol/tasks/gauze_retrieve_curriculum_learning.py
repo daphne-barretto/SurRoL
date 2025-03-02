@@ -1,6 +1,7 @@
 import os
 import time
 import numpy as np
+import pandas as pd
 
 import pybullet as p
 from surrol.tasks.psm_env import PsmEnv
@@ -27,15 +28,7 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
         self._waypoint_goal = True
         # self._contact_approx = True  # mimic the dVRL setting, prove nothing?
 
-        # robot
         workspace_limits = self.workspace_limits1
-        pos = (workspace_limits[0][0],
-               workspace_limits[1][1],
-               (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
-        orn = (0.5, 0.5, -0.5, -0.5)
-        joint_positions = self.psm1.inverse_kinematics((pos, orn), self.psm1.EEF_LINK_INDEX)
-        self.psm1.reset_joint(joint_positions)
-        self.block_gripper = False
 
         # tray pad
         obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'tray/tray.urdf'),
@@ -56,6 +49,31 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
         p.changeVisualShape(obj_id, -1, specularColor=(0, 0, 0))
         self.obj_ids['rigid'].append(obj_id)  # 0
         self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
+
+        # robot
+        final_initial_robot_pos = (workspace_limits[0][0],
+                                    workspace_limits[1][1],
+                                    (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
+        # set robot position (start state) based on previous evaluation data
+        # ================================================
+        alg = 'ddpgcl'  # 'ddpgcl' or 'hercl'
+        if alg == 'ddpgcl':
+            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
+            data = pd.read_csv(file_path)
+            success_rate = data['eval/return']
+        elif alg == 'hercl':
+            file_path = './logs/hercl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
+            data = pd.read_csv(file_path)
+            success_rate = data['test/success_rate']
+        # set robot position to be between final_initial_pos and needle_pos based on the most recent success rate
+        # so that the robot position is closer to the needle when the success rate is lower
+        most_recent_success_rate = success_rate.iloc[-1]
+        robot_pos = final_initial_robot_pos * most_recent_success_rate + needle_pos * (1 - most_recent_success_rate)
+        # ================================================
+        orn = (0.5, 0.5, -0.5, -0.5)
+        joint_positions = self.psm1.inverse_kinematics((pos, orn), self.psm1.EEF_LINK_INDEX)
+        self.psm1.reset_joint(joint_positions)
+        self.block_gripper = False
 
     def _set_action(self, action: np.ndarray):
         action[3] = 0  # no yaw change

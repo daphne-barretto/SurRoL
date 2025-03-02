@@ -49,20 +49,24 @@ class NeedleReachCurriculumLearning(PsmEnv):
         self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], 1
 
         # robot
-        final_initial_pos = (workspace_limits[0][0],
+        final_initial_robot_pos = (workspace_limits[0][0],
                workspace_limits[1][1],
                workspace_limits[2][1])
         # set robot position (start state) based on previous evaluation data
         # ================================================
-        # read the file ./logs/hercl/NeedleReachCurriculumLearning-1e5_0/progress.csv
-        file_path = './logs/hercl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
-        data = pd.read_csv(file_path)
-        # get the column "test/success_rate"
-        success_rate = data['test/success_rate']
+        alg = 'ddpgcl' # 'ddpgcl' or 'hercl'
+        if alg == 'ddpgcl':
+            file_path = './logs/ddpgcl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
+            data = pd.read_csv(file_path)
+            success_rate = data['eval/return']
+        elif alg == 'hercl':
+            file_path = './logs/hercl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
+            data = pd.read_csv(file_path)
+            success_rate = data['test/success_rate']
         # set robot position to be between final_initial_pos and needle_pos based on the most recent success rate
         # so that the robot position is closer to the needle when the success rate is lower
         most_recent_success_rate = success_rate.iloc[-1]
-        robot_pos = final_initial_pos * most_recent_success_rate + needle_pos * (1 - most_recent_success_rate)
+        robot_pos = final_initial_robot_pos * most_recent_success_rate + needle_pos * (1 - most_recent_success_rate)
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
         joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
