@@ -104,7 +104,7 @@ def main():
 
     plt.xlabel('Epoch')
     plt.ylabel('Success Rate')
-    plt.ylim(0, 1)
+    plt.ylim(0, 1.05)
     plt.title(args.task)
     plt.legend(loc='lower right', bbox_to_anchor=(0.95, 0.25))
     plt.grid(True)
