@@ -72,13 +72,15 @@ def train(args, extra_args):
             alg_kwargs['network'] = get_default_network(env_type)
 
     if args.eval_env:
-        eval_env = build_env(args)
-        alg_kwargs['eval_env'] = eval_env
+        eval_args = args
+        eval_args.env = args.eval_env
+        eval_env = build_env(eval_args)
 
     print('Training {} on {}:{} with arguments \n{}'.format(args.alg, env_type, env_id, alg_kwargs))
 
     model = learn(
         env=env,
+        eval_env=eval_env,
         seed=seed,
         total_timesteps=total_timesteps,
         **alg_kwargs
