@@ -71,16 +71,24 @@ class NeedleReachCurriculumLearning(PsmEnv):
             file_path = './logs/hercl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
+                print("Reading data from file:", file_path)
                 if data.empty:
-                    most_recent_success_rate = 0.0
+                    epoch = 0
+                    print('Empty data frame')
                 else:
-                    success_rate = data['test/success_rate']
-                    most_recent_success_rate = success_rate.iloc[-1]
+                    data_epoch = data['epoch']
+                    epoch = data_epoch.iloc[-1]
+                print('Epoch:', epoch)
             except pd.errors.EmptyDataError:
-                most_recent_success_rate = 0.0
-        # set robot position to be between final_initial_pos and needle_pos based on the most recent success rate
-        # so that the robot position is closer to the needle when the success rate is lower
-        robot_pos = final_initial_robot_pos * most_recent_success_rate + needle_pos * (1 - most_recent_success_rate)
+                epoch = 0
+        total_epochs = 50
+        training_progress = epoch * 1.0 / total_epochs
+        # set robot position to be between final_initial_pos and needle_pos based on training progress
+        # so that the robot position moves from close to the needle to far away from the needle as training progresses
+        robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(needle_pos) * (1 - training_progress)
+        print('final_initial_robot_pos:', final_initial_robot_pos)
+        print('needle_pos:', needle_pos)
+        print('robot_pos:', robot_pos)
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
         joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
