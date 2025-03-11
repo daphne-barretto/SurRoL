@@ -5,5 +5,4 @@ surrol.egg-info
 build
 logs*
 policies*
-surrol/data/demo
 surrol/data/video
