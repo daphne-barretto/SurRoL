@@ -159,7 +159,7 @@ class DDPG(object):
 
     def init_demo_buffer(self, demoDataFile, update_stats=True): #function that initializes the demo buffer
 
-        demoData = np.load(demoDataFile) #load the demonstration data from data file
+        demoData = np.load(demoDataFile, allow_pickle=True) #load the demonstration data from data file
         info_keys = [key.replace('info_', '') for key in self.input_dims.keys() if key.startswith('info_')]
         info_values = [np.empty((self.T - 1, 1, self.input_dims['info_' + key]), np.float32) for key in info_keys]
 
