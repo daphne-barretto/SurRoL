@@ -54,30 +54,32 @@ class NeedleReachCurriculumLearning(PsmEnv):
                workspace_limits[2][1])
         # set robot position (start state) based on previous evaluation data
         # ================================================
-        alg = 'ddpgcl' # 'ddpgcl' or 'hercl'
+        alg = 'hercl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
             file_path = './logs/ddpgcl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
-                    success_rate = 0.0
+                    # set success_rate to data frame with 0.0
+                    most_recent_success_rate = 0.0
                 else:
                     success_rate = data['eval/return']
+                    most_recent_success_rate = success_rate.iloc[-1]
             except pd.errors.EmptyDataError:
-                success_rate = 0.0
+                most_recent_success_rate = 0.0
         elif alg == 'hercl':
             file_path = './logs/hercl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
-                    success_rate = 0.0
+                    most_recent_success_rate = 0.0
                 else:
                     success_rate = data['test/success_rate']
+                    most_recent_success_rate = success_rate.iloc[-1]
             except pd.errors.EmptyDataError:
-                success_rate = 0.0
+                most_recent_success_rate = 0.0
         # set robot position to be between final_initial_pos and needle_pos based on the most recent success rate
         # so that the robot position is closer to the needle when the success rate is lower
-        most_recent_success_rate = success_rate.iloc[-1]
         robot_pos = final_initial_robot_pos * most_recent_success_rate + needle_pos * (1 - most_recent_success_rate)
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
