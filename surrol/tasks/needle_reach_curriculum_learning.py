@@ -60,25 +60,21 @@ class NeedleReachCurriculumLearning(PsmEnv):
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
-                    # set success_rate to data frame with 0.0
-                    most_recent_success_rate = 0.0
+                    epoch = 0
                 else:
-                    success_rate = data['eval/return']
-                    most_recent_success_rate = success_rate.iloc[-1]
+                    data_epoch = data['total/epochs']
+                    epoch = data_epoch.iloc[-1]
             except pd.errors.EmptyDataError:
-                most_recent_success_rate = 0.0
+                epoch = 0
         elif alg == 'hercl':
             file_path = './logs/hercl/NeedleReachCurriculumLearning-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
-                print("Reading data from file:", file_path)
                 if data.empty:
                     epoch = 0
-                    print('Empty data frame')
                 else:
                     data_epoch = data['epoch']
                     epoch = data_epoch.iloc[-1]
-                print('Epoch:', epoch)
             except pd.errors.EmptyDataError:
                 epoch = 0
         total_epochs = 50

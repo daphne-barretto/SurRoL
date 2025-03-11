@@ -39,10 +39,11 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
         p.changeVisualShape(obj_id, -1, rgbaColor=(225 / 255, 225 / 255, 225 / 255, 1))
 
         # gauze
+        gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[2][0] + 0.01)
         obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
-                            (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,  # TODO: scaling
-                             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                             workspace_limits[2][0] + 0.01),
+                            gauze_pos,
                             (0, 0, 0, 1),
                             useFixedBase=False,
                             globalScaling=self.SCALING)
@@ -56,31 +57,38 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
                                     (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
         # set robot position (start state) based on previous evaluation data
         # ================================================
-        alg = 'ddpgcl'  # 'ddpgcl' or 'hercl'
+        alg = 'hercl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
             file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
-                    success_rate = 0.0
+                   epoch = 0
                 else:
-                    success_rate = data['eval/return']
+                    data_epoch = data['total/epochs']
+                    epoch = data_epoch.iloc[-1]
             except pd.errors.EmptyDataError:
-                success_rate = 0.0
+                epoch = 0
         elif alg == 'hercl':
             file_path = './logs/hercl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
-                    success_rate = 0.0
+                    epoch = 0
                 else:
-                    success_rate = data['test/success_rate']
+                    data_epoch = data['epoch']
+                    epoch = data_epoch.iloc[-1]
             except pd.errors.EmptyDataError:
-                success_rate = 0.0
-        # set robot position to be between final_initial_pos and needle_pos based on the most recent success rate
-        # so that the robot position is closer to the needle when the success rate is lower
-        most_recent_success_rate = success_rate.iloc[-1]
-        robot_pos = final_initial_robot_pos * most_recent_success_rate + needle_pos * (1 - most_recent_success_rate)
+                epoch = 0
+        total_epochs = 50
+        training_progress = epoch * 1.0 / total_epochs
+        # set robot position to be between final_initial_pos and needle_pos based on training progress
+        # so that the robot position moves from close to the needle to far away from the needle as training progresses
+        gauze_pos = self.obj_ids['rigid'][0]
+        robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
+        print('final_initial_robot_pos:', final_initial_robot_pos)
+        print('needle_pos:', gauze_pos)
+        print('robot_pos:', robot_pos)
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
         joint_positions = self.psm1.inverse_kinematics((pos, orn), self.psm1.EEF_LINK_INDEX)

@@ -1,6 +1,7 @@
 import os
 import time
 import numpy as np
+import pandas as pd
 
 import pybullet as p
 from surrol.tasks.psm_env import PsmEnv, goal_distance
@@ -22,15 +23,7 @@ class PegTransferCurriculumLearning(PsmEnv):
         super(PegTransferCurriculumLearning, self)._env_setup()
         self.has_object = True
 
-        # robot
         workspace_limits = self.workspace_limits1
-        pos = (workspace_limits[0][0],
-               workspace_limits[1][1],
-               workspace_limits[2][1])
-        orn = (0.5, 0.5, -0.5, -0.5)
-        joint_positions = self.psm1.inverse_kinematics((pos, orn), self.psm1.EEF_LINK_INDEX)
-        self.psm1.reset_joint(joint_positions)
-        self.block_gripper = False
 
         # peg board
         obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'peg_board/peg_board.urdf'),
@@ -60,6 +53,50 @@ class PegTransferCurriculumLearning(PsmEnv):
             # change color to red
             p.changeVisualShape(obj_id, -1, rgbaColor=(255 / 255, 69 / 255, 58 / 255, 1))
         self.obj_id, self.obj_link1 = self._blocks[0], 1
+        red_block_pos = get_link_pose(self.obj_id, self.obj_link1)[0]
+
+        # robot
+        final_initial_robot_pos = (workspace_limits[0][0],
+               workspace_limits[1][1],
+               workspace_limits[2][1])
+        # set robot position (start state) based on previous evaluation data
+        # ================================================
+        alg = 'hercl' # 'ddpgcl' or 'hercl'
+        if alg == 'ddpgcl':
+            file_path = './logs/ddpgcl/NeedlePickCurriculumLearning-1e5_0/progress.csv'
+            try:
+                data = pd.read_csv(file_path)
+                if data.empty:
+                   epoch = 0
+                else:
+                    data_epoch = data['total/epochs']
+                    epoch = data_epoch.iloc[-1]
+            except pd.errors.EmptyDataError:
+                epoch = 0
+        elif alg == 'hercl':
+            file_path = './logs/hercl/NeedlePickCurriculumLearning-1e5_0/progress.csv'
+            try:
+                data = pd.read_csv(file_path)
+                if data.empty:
+                    epoch = 0
+                else:
+                    data_epoch = data['epoch']
+                    epoch = data_epoch.iloc[-1]
+            except pd.errors.EmptyDataError:
+                epoch = 0
+        total_epochs = 50
+        training_progress = epoch * 1.0 / total_epochs
+        # set robot position to be between final_initial_pos and needle_pos based on training progress
+        # so that the robot position moves from close to the needle to far away from the needle as training progresses
+        robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(red_block_pos) * (1 - training_progress)
+        print('final_initial_robot_pos:', final_initial_robot_pos)
+        print('red_block_pos:', red_block_pos)
+        print('robot_pos:', robot_pos)
+        # ================================================
+        orn = (0.5, 0.5, -0.5, -0.5)
+        joint_positions = self.psm1.inverse_kinematics((pos, orn), self.psm1.EEF_LINK_INDEX)
+        self.psm1.reset_joint(joint_positions)
+        self.block_gripper = False
 
     def _is_success(self, achieved_goal, desired_goal):
         """ Indicates whether or not the achieved goal successfully achieved the desired goal.
