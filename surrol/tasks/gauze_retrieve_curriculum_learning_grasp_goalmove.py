@@ -141,6 +141,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 # set the position until the psm can grasp it
                 # gauze_pos = np.random.uniform(low=sample_space[:, 0], high=sample_space[:, 1])
                 gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
+                self.gauze_pos = gauze_pos
                 #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
                 # pitch = np.random.uniform(low=-105., high=-75.)  # reduce difficulty
                 # orn_needle = p.getQuaternionFromEuler(np.deg2rad([-90, pitch, 90]))
@@ -179,9 +180,10 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 # place the gauze in the psm's jaw
                 # gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
                 #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
+                p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn)
                 cid = p.createConstraint(obj_id, -1, -1, -1,
-                                        p.JOINT_FIXED, [0, 0, 0], [0, 0, 0], gauze_pos,
-                                        childFrameOrientation=orn)
+                                     p.JOINT_FIXED, [0, 0, 0], [0, 0, 0], gauze_pos,
+                                     childFrameOrientation=orn)
                 psm.close_jaw()
                 step(0.5)
                 p.removeConstraint(cid)
