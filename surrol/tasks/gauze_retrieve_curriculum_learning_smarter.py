@@ -93,11 +93,11 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         print('needle_pos:', gauze_pos)
         print('robot_pos:', robot_pos)
 
-        init_target_pos = self.obj_ids['fixed'][0]
-        new_target_pos = np.array(init_target_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
-        print("target_pos", init_target_pos)
-        print("new_target_pos", new_target_pos)
-        self.obj_ids['fixed'][0] = new_target_pos
+        # init_target_pos = self.obj_ids['fixed'][0]
+        # new_target_pos = np.array(init_target_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
+        # print("target_pos", init_target_pos)
+        # print("new_target_pos", new_target_pos)
+        # self.obj_ids['fixed'][0] = new_target_pos
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
         joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
