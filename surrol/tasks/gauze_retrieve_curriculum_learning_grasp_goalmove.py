@@ -120,7 +120,10 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
                             workspace_limits[2][0] + 0.01)
                 self.gauze_pos =gauze_pos
-                pose_tip = gauze_pos
+                pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link2)  # the right side waypoint
+                p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
+                
+                pose_tip = [pos_waypoint + np.array([0.0015 * self.SCALING, 0, 0]), orn_waypoint]
                 pose_eef = psm.pose_tip2eef(pose_tip)
 
                 # move the psm
