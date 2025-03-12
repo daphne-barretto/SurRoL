@@ -151,7 +151,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 pose_tip = [pos_waypoint + np.array([0.0015 * self.SCALING, 0, 0]), orn_tip]
                 pose_eef = psm.pose_tip2eef(pose_tip)
 
-
+                
                 # # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
                 # #             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
                 # #             workspace_limits[2][0] + 0.01)
@@ -184,6 +184,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 self._step_callback()
                 step(1)
                 self._step_callback()
+                self.robot_pos = pose_tip
                 if self._activated >= 0:
                     break
 
@@ -194,6 +195,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                                         (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
             non_grasp_progress = (training_progress - self.grasp_curriculum_hyperparam) / (1 - self.grasp_curriculum_hyperparam)
             robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
+            self.robot_pos = robot_pos
             # ================================================
 
             orn = (0.5, 0.5, -0.5, -0.5)
