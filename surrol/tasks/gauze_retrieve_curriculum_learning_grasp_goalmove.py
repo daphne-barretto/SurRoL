@@ -32,19 +32,21 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
 
        
         # robot
-        for psm, workspace_limits in (self.psm1, self.workspace_limits1):
-            pos = (workspace_limits[0].mean(),
-                   workspace_limits[1].mean(),
-                   workspace_limits[2].mean())
-            # orn = p.getQuaternionFromEuler(np.deg2rad([0, np.random.uniform(-45, -135), -90]))
-            orn = p.getQuaternionFromEuler(np.deg2rad([0, -90, -90]))  # reduce difficulty
+        psm = self.psm1
+        workspace_limits = self.workspace_limits1
 
-            # psm.reset_joint(self.QPOS_PSM1)
-            joint_positions = psm.inverse_kinematics((pos, orn), psm.EEF_LINK_INDEX)
-            psm.reset_joint(joint_positions)
+        pos = (workspace_limits[0].mean(),
+               workspace_limits[1].mean(),
+               workspace_limits[2].mean())
+        # orn = p.getQuaternionFromEuler(np.deg2rad([0, np.random.uniform(-45, -135), -90]))
+        orn = p.getQuaternionFromEuler(np.deg2rad([0, -90, -90]))  # reduce difficulty
+
+        # psm.reset_joint(self.QPOS_PSM1)
+        joint_positions = psm.inverse_kinematics((pos, orn), psm.EEF_LINK_INDEX)
+        psm.reset_joint(joint_positions)
 
         self.block_gripper = False  # set the constraint
-        psm = self.psm1
+        
         workspace_limits = self.workspace_limits1
 
         # tray pad
