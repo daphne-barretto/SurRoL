@@ -7,11 +7,12 @@ import pybullet as p
 from surrol.tasks.psm_env import PsmEnv
 from surrol.utils.pybullet_utils import (
     get_link_pose,
+    step
 )
 from surrol.const import ASSET_DIR_PATH
 
 
-class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
+class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
     """
     Refer to Gym FetchPickAndPlace
     https://github.com/openai/gym/blob/master/gym/envs/robotics/fetch/pick_and_place.py
@@ -23,7 +24,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
     # TODO: grasp is sometimes not stable; check how to fix it
 
     def _env_setup(self):
-        super(GauzeRetrieveCurriculumLearningSmarter, self)._env_setup()
+        super(GauzeRetrieveCurriculumLearningGraspGoalMove, self)._env_setup()
         self.has_object = True
         self._waypoint_goal = True
         # self._contact_approx = True  # mimic the dVRL setting, prove nothing?
@@ -52,11 +53,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         self.obj_ids['rigid'].append(obj_id)  # 0
         self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
 
-        # robot
-        final_initial_robot_pos = (workspace_limits[0][0],
-                                    workspace_limits[1][1],
-                                    (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
-        # set robot position (start state) based on previous evaluation data
+        # get eopch from saved data
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
@@ -84,7 +81,11 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         total_epochs = 50
         training_progress = epoch * 1.0 / total_epochs
         self.training_progress = training_progress
-        
+        # ================================================
+        # robot
+        final_initial_robot_pos = (workspace_limits[0][0],
+                                    workspace_limits[1][1],
+                                    (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
         # set robot position to be between final_initial_pos and needle_pos based on training progress
         # so that the robot position moves from close to the needle to far away from the needle as training progresses
         # gauze_pos = self.obj_ids['rigid'][0]
@@ -94,21 +95,33 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         print('final_initial_robot_pos:', final_initial_robot_pos)
         print('needle_pos:', gauze_pos)
         print('robot_pos:', robot_pos)
-
-        # init_target_pos = self.obj_ids['fixed'][0]
-        # new_target_pos = np.array(init_target_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
-        # print("target_pos", init_target_pos)
-        # print("new_target_pos", new_target_pos)
-        # self.obj_ids['fixed'][0] = new_target_pos
         # ================================================
+        #grasp gauze at start
+        self.grasp_curriculum_hyperparam = 0.5 # how long to train with gauze already in the psm's jaw
+        if training_progress < self.grasp_curriculum_hyperparam:
+            # grasp_progress = training_progress / self.grasp_curriculum_hyperparam
+            # robot_pos = np.array(gauze_pos) * grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
+            # place the gauze in the psm's jaw
+            gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
+            self.psm1.close_jaw()
+            print('close jaw')
+        else:
+            non_grasp_progress = (training_progress - self.grasp_curriculum_hyperparam) / (1 - self.grasp_curriculum_hyperparam)
+            robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
+        # ================================================
+
         orn = (0.5, 0.5, -0.5, -0.5)
         joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
         self.psm1.reset_joint(joint_positions)
         self.block_gripper = False
 
+        
+    
+
+
     def _set_action(self, action: np.ndarray):
         action[3] = 0  # no yaw change
-        super(GauzeRetrieveCurriculumLearningSmarter, self)._set_action(action)
+        super(GauzeRetrieveCurriculumLearningGraspGoalMove, self)._set_action(action)
 
     def _sample_goal(self) -> np.ndarray:
         """ Samples a new goal and returns it.
@@ -119,9 +132,9 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                          workspace_limits[2][1] - 0.03 * self.SCALING])
         
         # gauze_pos = self.obj_ids['rigid'][0]
-        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
-        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
-        print ("gauze_pos is,", self.gauze_pos)
+        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
+        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
+        # print ("gauze_pos is,", self.gauze_pos)
         print ("final_goal_pos is,", final_goal_pos)
         return final_goal_pos.copy()
 
@@ -174,7 +187,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
 
 
 if __name__ == "__main__":
-    env = GauzeRetrieveCurriculumLearningSmarter(render_mode='human')  # create one process and corresponding env
+    env = GauzeRetrieveCurriculumLearningGraspGoalMove(render_mode='human')  # create one process and corresponding env
 
     env.test()
     env.close()
