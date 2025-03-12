@@ -82,7 +82,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                 epoch = 0
         total_epochs = 50
         training_progress = epoch * 1.0 / total_epochs
-
+        self.training_progress = training_progress
         
         # set robot position to be between final_initial_pos and needle_pos based on training progress
         # so that the robot position moves from close to the needle to far away from the needle as training progresses
@@ -106,7 +106,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
 
     def _set_action(self, action: np.ndarray):
         action[3] = 0  # no yaw change
-        super(GauzeRetrieveCurriculumLearning, self)._set_action(action)
+        super(GauzeRetrieveCurriculumLearningSmarter, self)._set_action(action)
 
     def _sample_goal(self) -> np.ndarray:
         """ Samples a new goal and returns it.
@@ -115,7 +115,11 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         goal = np.array([workspace_limits[0].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[1].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[2][1] - 0.03 * self.SCALING])
-        return goal.copy()
+        
+        gauze_pos = self.obj_ids['rigid'][0]
+        final_goal_pos = np.array(goal) * self.training_progress + np.array(gauze_pos) * (1 - self.training_progress)
+        print ("final_goal_pos is,", final_goal_pos)
+        return final_goal_pos.copy()
 
     def _sample_goal_callback(self):
         """ Define waypoints
@@ -166,7 +170,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
 
 
 if __name__ == "__main__":
-    env = GauzeRetrieveCurriculumLearning(render_mode='human')  # create one process and corresponding env
+    env = GauzeRetrieveCurriculumLearningSmarter(render_mode='human')  # create one process and corresponding env
 
     env.test()
     env.close()

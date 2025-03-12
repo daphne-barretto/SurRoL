@@ -82,6 +82,7 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
                 epoch = 0
         total_epochs = 50
         training_progress = epoch * 1.0 / total_epochs
+        
         # set robot position to be between final_initial_pos and needle_pos based on training progress
         # so that the robot position moves from close to the needle to far away from the needle as training progresses
         gauze_pos = self.obj_ids['rigid'][0]
