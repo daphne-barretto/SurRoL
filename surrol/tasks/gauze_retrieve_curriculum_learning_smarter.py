@@ -73,6 +73,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                     train_success = data_train_success.iloc[-1]
             except pd.errors.EmptyDataError:
                 epoch = 0
+                train_success = 0
         elif alg == 'hercl':
             file_path = './logs/hercl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
             try:
@@ -87,6 +88,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                     train_success = data_train_success.iloc[-1]
             except pd.errors.EmptyDataError:
                 epoch = 0
+                train_success =0 
         total_epochs = 50
         training_progress = (epoch * 1.0 / total_epochs) * train_success
         self.training_progress = training_progress
