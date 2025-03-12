@@ -88,18 +88,22 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         self.training_progress = training_progress
         # ================================================
         # robot
-        final_initial_robot_pos = (workspace_limits[0][0],
+        robot_pos = (workspace_limits[0][0],
                                     workspace_limits[1][1],
                                     (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
         # set robot position to be between final_initial_pos and needle_pos based on training progress
+        # final_initial_robot_pos = (workspace_limits[0][0],
+        #                             workspace_limits[1][1],
+        #                             (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
+        # set robot position to be between final_initial_pos and needle_pos based on training progress
         # so that the robot position moves from close to the needle to far away from the needle as training progresses
         # gauze_pos = self.obj_ids['rigid'][0]
-        robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
-        robot_pos[2]+= 0.055
-        self.robot_pos = robot_pos
-        print('final_initial_robot_pos:', final_initial_robot_pos)
-        print('needle_pos:', gauze_pos)
-        print('robot_pos:', robot_pos)
+        # robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
+        # robot_pos[2]+= 0.055
+        # self.robot_pos = robot_pos
+        # print('final_initial_robot_pos:', final_initial_robot_pos)
+        # print('needle_pos:', gauze_pos)
+        # print('robot_pos:', robot_pos)
         # ================================================
         psm = self.psm1
         #grasp gauze at start
