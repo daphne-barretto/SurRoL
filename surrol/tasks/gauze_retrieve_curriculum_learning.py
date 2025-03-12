@@ -82,16 +82,15 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
                 epoch = 0
         total_epochs = 50
         training_progress = epoch * 1.0 / total_epochs
-        # set robot position to be between final_initial_pos and needle_pos based on training progress
-        # so that the robot position moves from close to the needle to far away from the needle as training progresses
-        gauze_pos = self.obj_ids['rigid'][0]
+        # set robot position to be between final_initial_pos and gauze_pos based on training progress
+        # so that the robot position moves from close to the gauze to far away from the gauze as training progresses
         robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
         print('final_initial_robot_pos:', final_initial_robot_pos)
-        print('needle_pos:', gauze_pos)
+        print('gauze_pos:', gauze_pos)
         print('robot_pos:', robot_pos)
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
-        joint_positions = self.psm1.inverse_kinematics((pos, orn), self.psm1.EEF_LINK_INDEX)
+        joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
         self.psm1.reset_joint(joint_positions)
         self.block_gripper = False
 
