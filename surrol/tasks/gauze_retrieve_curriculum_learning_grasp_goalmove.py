@@ -186,7 +186,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 self._step_callback()
                 step(1)
                 self._step_callback()
-                self.robot_pos = pose_tip
+                self.robot_pos = pos_waypoint
                 if self._activated >= 0:
                     break
 
