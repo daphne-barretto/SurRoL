@@ -59,7 +59,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
-            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
+            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
@@ -70,7 +70,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
             except pd.errors.EmptyDataError:
                 epoch = 0
         elif alg == 'hercl':
-            file_path = './logs/hercl/GauzeRetrieveCurriculumLearning-1e5_0/progress.csv'
+            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
