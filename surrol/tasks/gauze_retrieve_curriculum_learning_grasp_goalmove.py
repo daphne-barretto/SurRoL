@@ -9,6 +9,7 @@ from surrol.utils.pybullet_utils import (
     get_link_pose,
     step
 )
+from surrol.utils.robotics import get_matrix_from_pose_2d
 from surrol.const import ASSET_DIR_PATH
 
 
@@ -40,10 +41,23 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         p.changeVisualShape(obj_id, -1, rgbaColor=(225 / 255, 225 / 255, 225 / 255, 1))
 
         # gauze
-        gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-                     workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                     workspace_limits[2][0] + 0.01)
-        
+        # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+        #              workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+        #              workspace_limits[2][0] + 0.01)
+        # self.gauze_pos =gauze_pos
+        limits_span = (workspace_limits[:, 1] - workspace_limits[:, 0]) / 3
+        sample_space = workspace_limits.copy()
+        sample_space[:, 0] += limits_span
+        sample_space[:, 1] -= limits_span
+        obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
+                            gauze_pos,
+                            (0, 0, 0, 1),
+                            useFixedBase=False,
+                            globalScaling=self.SCALING)
+        p.changeVisualShape(obj_id, -1, specularColor=(0, 0, 0))
+        self.obj_ids['rigid'].append(obj_id)  # 0
+        self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
+
         # get eopch from saved data
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
@@ -87,39 +101,58 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         print('needle_pos:', gauze_pos)
         print('robot_pos:', robot_pos)
         # ================================================
+        psm = self.psm1
         #grasp gauze at start
         self.grasp_curriculum_hyperparam = 0.5 # how long to train with gauze already in the psm's jaw
         if training_progress < self.grasp_curriculum_hyperparam:
             # grasp_progress = training_progress / self.grasp_curriculum_hyperparam
             # robot_pos = np.array(gauze_pos) * grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
-            # place the gauze in the psm's jaw
-            gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
-            self.psm1.close_jaw()
-            print('close jaw')
+            while True:
+                # open the jaw
+                psm.open_jaw()
+                # TODO: strange thing that if we use --num_env=1 with openai baselines, the qs vary before and after step!
+                step(0.5)
+                gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                            workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                            workspace_limits[2][0] + 0.01)
+                self.gauze_pos =gauze_pos
+                pose_tip = gauze_pos
+                pose_eef = psm.pose_tip2eef(pose_tip)
+
+                # move the psm
+                pose_world = get_matrix_from_pose_2d(pose_eef)
+                action_rcm = psm.pose_world2rcm(pose_world)
+                success = psm.move(action_rcm)
+                if success is False:
+                    continue
+                step(1)
+                # place the gauze in the psm's jaw
+                # gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
+                #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
+                orn = (0.5, 0.5, -0.5, -0.5)
+                cid = p.createConstraint(obj_id, -1, -1, -1,
+                                        p.JOINT_FIXED, [0, 0, 0], [0, 0, 0], gauze_pos,
+                                        childFrameOrientation=orn)
+                psm.close_jaw()
+                step(0.5)
+                p.removeConstraint(cid)
+                self._activate(0)
+                self._step_callback()
+                step(1)
+                self._step_callback()
+                if self._activated >= 0:
+                    break
+
+
         else:
             non_grasp_progress = (training_progress - self.grasp_curriculum_hyperparam) / (1 - self.grasp_curriculum_hyperparam)
             robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
-        # ================================================
+            # ================================================
 
-        orn = (0.5, 0.5, -0.5, -0.5)
-        joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
-        self.psm1.reset_joint(joint_positions)
-        self.block_gripper = False
-
-        
-        # gauze
-        # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-        #              workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-        #              workspace_limits[2][0] + 0.01)
-        self.gauze_pos =gauze_pos
-        obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
-                            gauze_pos,
-                            (0, 0, 0, 1),
-                            useFixedBase=False,
-                            globalScaling=self.SCALING)
-        p.changeVisualShape(obj_id, -1, specularColor=(0, 0, 0))
-        self.obj_ids['rigid'].append(obj_id)  # 0
-        self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
+            orn = (0.5, 0.5, -0.5, -0.5)
+            joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
+            self.psm1.reset_joint(joint_positions)
+            self.block_gripper = False
 
         
     
