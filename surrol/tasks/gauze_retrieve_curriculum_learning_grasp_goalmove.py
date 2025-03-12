@@ -120,7 +120,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         # self.robot_pos = robot_pos
         # print('final_initial_robot_pos:', final_initial_robot_pos)
         # print('needle_pos:', gauze_pos)
-        # print('robot_pos:', robot_pos)
+        print('robot_pos:', robot_pos)
         # ================================================
         
         psm = self.psm1
