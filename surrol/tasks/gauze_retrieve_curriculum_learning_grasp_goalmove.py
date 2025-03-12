@@ -138,9 +138,9 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
 
                 # set the position until the psm can grasp it
                 gauze_pos = np.random.uniform(low=sample_space[:, 0], high=sample_space[:, 1])
-                pitch = np.random.uniform(low=-105., high=-75.)  # reduce difficulty
-                orn_needle = p.getQuaternionFromEuler(np.deg2rad([-90, pitch, 90]))
-                p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn_needle)
+                # pitch = np.random.uniform(low=-105., high=-75.)  # reduce difficulty
+                # orn_needle = p.getQuaternionFromEuler(np.deg2rad([-90, pitch, 90]))
+                p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn)
 
                 # record the needle pose and move the psm to grasp the needle
                 pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link1)  # the right side waypoint
@@ -153,7 +153,6 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 pose_tip = [pos_waypoint + np.array([0.0015 * self.SCALING, 0, 0]), orn_tip]
                 pose_eef = psm.pose_tip2eef(pose_tip)
 
-                
                 # # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
                 # #             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
                 # #             workspace_limits[2][0] + 0.01)
@@ -189,9 +188,11 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 self.robot_pos = pos_waypoint
                 if self._activated >= 0:
                     break
-
-
         else:
+            gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                        workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                        workspace_limits[2][0] + 0.01)
+            self.gauze_pos =gauze_pos
             final_initial_robot_pos = (workspace_limits[0][0],
                                         workspace_limits[1][1],
                                         (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
@@ -204,7 +205,8 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
             joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
             self.psm1.reset_joint(joint_positions)
             self.block_gripper = False
-
+        print('gauze_pos:', gauze_pos)
+        print('robot_pos:', self.robot_pos)
         
     
 
@@ -222,8 +224,8 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                          workspace_limits[2][1] - 0.03 * self.SCALING])
         
         # gauze_pos = self.obj_ids['rigid'][0]
-        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
-        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
+        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
+        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
         # print ("gauze_pos is,", self.gauze_pos)
         print ("final_goal_pos is,", final_goal_pos)
         return final_goal_pos.copy()
