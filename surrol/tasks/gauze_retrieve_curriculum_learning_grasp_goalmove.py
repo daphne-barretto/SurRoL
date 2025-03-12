@@ -32,7 +32,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
 
        
         # robot
-        for psm, workspace_limits in ((self.psm1, self.workspace_limits1)):
+        for psm, workspace_limits in (self.psm1, self.workspace_limits1):
             pos = (workspace_limits[0].mean(),
                    workspace_limits[1].mean(),
                    workspace_limits[2].mean())
