@@ -106,6 +106,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         # print('robot_pos:', robot_pos)
         # ================================================
         psm = self.psm1
+        orn = (0.5, 0.5, -0.5, -0.5)
         #grasp gauze at start
         self.grasp_curriculum_hyperparam = 0.5 # how long to train with gauze already in the psm's jaw
         if training_progress < self.grasp_curriculum_hyperparam:
@@ -116,14 +117,16 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 psm.open_jaw()
                 # TODO: strange thing that if we use --num_env=1 with openai baselines, the qs vary before and after step!
                 step(0.5)
-                gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-                            workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                            workspace_limits[2][0] + 0.01)
+                # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                #             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                #             workspace_limits[2][0] + 0.01)
+                # self.gauze_pos =gauze_pos
+
+                gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
                 self.gauze_pos =gauze_pos
-                pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link2)  # the right side waypoint
-                p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
-                
-                pose_tip = [pos_waypoint + np.array([0.0015 * self.SCALING, 0, 0]), orn_waypoint]
+                # pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link2)  # the right side waypoint
+                # p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
+                pose_tip = [gauze_pos + np.array([0.0015 * self.SCALING, 0, 0]), orn]
                 pose_eef = psm.pose_tip2eef(pose_tip)
 
                 # move the psm
@@ -136,7 +139,6 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 # place the gauze in the psm's jaw
                 # gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
                 #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
-                orn = (0.5, 0.5, -0.5, -0.5)
                 cid = p.createConstraint(obj_id, -1, -1, -1,
                                         p.JOINT_FIXED, [0, 0, 0], [0, 0, 0], gauze_pos,
                                         childFrameOrientation=orn)
