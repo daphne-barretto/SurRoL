@@ -67,7 +67,9 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         sample_space[:, 0] += limits_span
         sample_space[:, 1] -= limits_span
         obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
-                            (0.01 * self.SCALING, 0, 0),
+                            (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,  # TODO: scaling
+                             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                             workspace_limits[2][0] + 0.01),
                             (0, 0, 0, 1),
                             useFixedBase=False,
                             globalScaling=self.SCALING)
