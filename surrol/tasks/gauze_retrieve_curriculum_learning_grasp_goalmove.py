@@ -117,17 +117,36 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 psm.open_jaw()
                 # TODO: strange thing that if we use --num_env=1 with openai baselines, the qs vary before and after step!
                 step(0.5)
-                # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-                #             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                #             workspace_limits[2][0] + 0.01)
-                # self.gauze_pos =gauze_pos
 
-                gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
-                self.gauze_pos =gauze_pos
-                # pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link2)  # the right side waypoint
-                # p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
-                pose_tip = [gauze_pos + np.array([0.0015 * self.SCALING, 0, 0]), orn]
+
+                # set the position until the psm can grasp it
+                gauze_pos = np.random.uniform(low=sample_space[:, 0], high=sample_space[:, 1])
+                pitch = np.random.uniform(low=-105., high=-75.)  # reduce difficulty
+                orn_needle = p.getQuaternionFromEuler(np.deg2rad([-90, pitch, 90]))
+                p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn_needle)
+
+                # record the needle pose and move the psm to grasp the needle
+                pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link2)  # the right side waypoint
+                orn_waypoint = np.rad2deg(p.getEulerFromQuaternion(orn_waypoint))
+                p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
+
+                # get the eef pose according to the needle pose
+                orn_tip = p.getQuaternionFromEuler(np.deg2rad([90, -90 - orn_waypoint[1], 90]))
+                pose_tip = [pos_waypoint + np.array([0.0015 * self.SCALING, 0, 0]), orn_tip]
                 pose_eef = psm.pose_tip2eef(pose_tip)
+
+
+                # # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                # #             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                # #             workspace_limits[2][0] + 0.01)
+                # # self.gauze_pos =gauze_pos
+
+                # gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
+                # self.gauze_pos =gauze_pos
+                # # pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link2)  # the right side waypoint
+                # # p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
+                # pose_tip = [gauze_pos + np.array([0.0015 * self.SCALING, 0, 0]), orn]
+                # pose_eef = psm.pose_tip2eef(pose_tip)
 
                 # move the psm
                 pose_world = get_matrix_from_pose_2d(pose_eef)
@@ -154,6 +173,9 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
 
 
         else:
+            final_initial_robot_pos = (workspace_limits[0][0],
+                                        workspace_limits[1][1],
+                                        (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
             non_grasp_progress = (training_progress - self.grasp_curriculum_hyperparam) / (1 - self.grasp_curriculum_hyperparam)
             robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
             # ================================================
