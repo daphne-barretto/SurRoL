@@ -54,7 +54,7 @@ register(
 #PSM CL Smarters
 register(
     id='GauzeRetrieveCurriculumLearningSmarter-v0',
-    entry_point='surrol.tasks.gauze_retrieve_curriculum_learning:GauzeRetrieveCurriculumLearningSmarter',
+    entry_point='surrol.tasks.gauze_retrieve_curriculum_learning_smarter:GauzeRetrieveCurriculumLearningSmarter',
     max_episode_steps=50,
 )
 
