@@ -122,6 +122,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         # print('needle_pos:', gauze_pos)
         # print('robot_pos:', robot_pos)
         # ================================================
+        
         psm = self.psm1
         orn = (0.5, 0.5, -0.5, -0.5)
         #grasp gauze at start
@@ -143,6 +144,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
 
                 # record the needle pose and move the psm to grasp the needle
                 pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link1)  # the right side waypoint
+                self._waypoint_z_init = pos_waypoint[2]
                 orn_waypoint = np.rad2deg(p.getEulerFromQuaternion(orn_waypoint))
                 p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
 
