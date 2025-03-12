@@ -68,6 +68,8 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                 else:
                     data_epoch = data['total/epochs']
                     epoch = data_epoch.iloc[-1]
+                    data_train_success = data['train/success_rate']
+                    train_success = data_train_success.iloc[-1]
             except pd.errors.EmptyDataError:
                 epoch = 0
         elif alg == 'hercl':
@@ -79,10 +81,12 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                 else:
                     data_epoch = data['epoch']
                     epoch = data_epoch.iloc[-1]
+                    data_train_success = data['train/success_rate']
+                    train_success = data_train_success.iloc[-1]
             except pd.errors.EmptyDataError:
                 epoch = 0
         total_epochs = 50
-        training_progress = epoch * 1.0 / total_epochs
+        training_progress = (epoch * 1.0 / total_epochs) * train_success
         self.training_progress = training_progress
         
         # set robot position to be between final_initial_pos and needle_pos based on training progress
