@@ -39,6 +39,11 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         self.obj_ids['fixed'].append(obj_id)  # 1
         p.changeVisualShape(obj_id, -1, rgbaColor=(225 / 255, 225 / 255, 225 / 255, 1))
 
+        # gauze
+        gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[2][0] + 0.01)
+        
         # get eopch from saved data
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
@@ -103,9 +108,9 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
 
         
         # gauze
-        gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-                     workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                     workspace_limits[2][0] + 0.01)
+        # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+        #              workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+        #              workspace_limits[2][0] + 0.01)
         self.gauze_pos =gauze_pos
         obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
                             gauze_pos,
