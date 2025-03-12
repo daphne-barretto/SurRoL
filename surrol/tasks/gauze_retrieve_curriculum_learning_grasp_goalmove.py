@@ -39,20 +39,6 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         self.obj_ids['fixed'].append(obj_id)  # 1
         p.changeVisualShape(obj_id, -1, rgbaColor=(225 / 255, 225 / 255, 225 / 255, 1))
 
-        # gauze
-        gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-                     workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                     workspace_limits[2][0] + 0.01)
-        self.gauze_pos =gauze_pos
-        obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
-                            gauze_pos,
-                            (0, 0, 0, 1),
-                            useFixedBase=False,
-                            globalScaling=self.SCALING)
-        p.changeVisualShape(obj_id, -1, specularColor=(0, 0, 0))
-        self.obj_ids['rigid'].append(obj_id)  # 0
-        self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
-
         # get eopch from saved data
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
@@ -114,6 +100,21 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
         self.psm1.reset_joint(joint_positions)
         self.block_gripper = False
+
+        
+        # gauze
+        gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[2][0] + 0.01)
+        self.gauze_pos =gauze_pos
+        obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
+                            gauze_pos,
+                            (0, 0, 0, 1),
+                            useFixedBase=False,
+                            globalScaling=self.SCALING)
+        p.changeVisualShape(obj_id, -1, specularColor=(0, 0, 0))
+        self.obj_ids['rigid'].append(obj_id)  # 0
+        self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
 
         
     
