@@ -42,6 +42,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
                      workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
                      workspace_limits[2][0] + 0.01)
+        self.gauze_pos =gauze_pos
         obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
                             gauze_pos,
                             (0, 0, 0, 1),
@@ -115,8 +116,9 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                          workspace_limits[1].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[2][1] - 0.03 * self.SCALING])
         
-        gauze_pos = self.obj_ids['rigid'][0]
-        final_goal_pos = np.array(goal) * self.training_progress + np.array(gauze_pos) * (1 - self.training_progress)
+        # gauze_pos = self.obj_ids['rigid'][0]
+        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
+        print ("gauze_pos is,", self.gauze_pos)
         print ("final_goal_pos is,", final_goal_pos)
         return final_goal_pos.copy()
 
