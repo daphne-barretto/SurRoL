@@ -137,7 +137,9 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 step(0.5)
 
                 # set the position until the psm can grasp it
-                gauze_pos = np.random.uniform(low=sample_space[:, 0], high=sample_space[:, 1])
+                # gauze_pos = np.random.uniform(low=sample_space[:, 0], high=sample_space[:, 1])
+                gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
+                #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
                 # pitch = np.random.uniform(low=-105., high=-75.)  # reduce difficulty
                 # orn_needle = p.getQuaternionFromEuler(np.deg2rad([-90, pitch, 90]))
                 p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn)
