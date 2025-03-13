@@ -37,9 +37,11 @@ class SurRoLEnv(gym.Env):
         #     if self.cid < 0:
         if render_mode == 'human':
             self.cid = p.connect(p.GUI)
+            print("connected to pybullet")
             # p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
         else:
             self.cid = p.connect(p.DIRECT)
+            print ("connected to pybullet")
             # See PyBullet Quickstart Guide Synthetic Camera Rendering
             # TODO: no light when using direct without egl
             # if socket.gethostname().startswith('pc') or True:
