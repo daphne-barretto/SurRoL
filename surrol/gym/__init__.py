@@ -58,6 +58,12 @@ register(
     max_episode_steps=50,
 )
 
+register(
+    id='GauzeRetrieveCurriculumLearningGraspGoalMove-v0',
+    entry_point='surrol.tasks.gauze_retrieve_curriculum_learning_grasp_goalmove:GauzeRetrieveCurriculumLearningGraspGoalMove',
+    max_episode_steps=50,
+)
+
 # Bimanual PSM Env
 register(
     id='NeedleRegrasp-v0',
