@@ -3,6 +3,9 @@ import time
 import numpy as np
 import pandas as pd
 
+import sys
+sys.path.append("C:/Users/dbarretto/SurRoL")
+
 import pybullet as p
 from surrol.tasks.psm_env import PsmEnv
 from surrol.utils.pybullet_utils import (
@@ -82,12 +85,15 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
                 epoch = 0
         total_epochs = 50
         training_progress = epoch * 1.0 / total_epochs
+        # take max between 0.10 and training_progress to avoid robot being too close to the gauze
+        training_progress = max(0.10, training_progress)
+
         # set robot position to be between final_initial_pos and gauze_pos based on training progress
         # so that the robot position moves from close to the gauze to far away from the gauze as training progresses
         robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
-        print('final_initial_robot_pos:', final_initial_robot_pos)
-        print('gauze_pos:', gauze_pos)
-        print('robot_pos:', robot_pos)
+        # print('final_initial_robot_pos:', final_initial_robot_pos)
+        # print('gauze_pos:', gauze_pos)
+        # print('robot_pos:', robot_pos)
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
         joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
