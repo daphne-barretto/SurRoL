@@ -101,12 +101,12 @@ def main():
             plt.plot(trim_epochs[0], mean, label=alg_name, color=color)
             plt.fill_between(trim_epochs[0], mean - std, mean + std, alpha=0.2, color=color)
             plt.fill_between(trim_epochs[0], mean - stderr, mean + stderr, alpha=0.4, color=color)
+            plt.legend(loc='lower right', bbox_to_anchor=(0.95, 0.25))  
 
     plt.xlabel('Epoch')
     plt.ylabel('Success Rate')
     plt.ylim(0, 1.05)
     plt.title(args.task)
-    plt.legend(loc='lower right', bbox_to_anchor=(0.95, 0.25))
     plt.grid(True)
     plt.tight_layout()
 
