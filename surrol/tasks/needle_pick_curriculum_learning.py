@@ -60,9 +60,9 @@ class NeedlePickCurriculumLearning(PsmEnv):
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
-                   epoch = 0
+                    epoch = 0
                 else:
-                    data_epoch = data['total/epochs']
+                    data_epoch = data['total/epochs'] + 1
                     epoch = data_epoch.iloc[-1]
             except pd.errors.EmptyDataError:
                 epoch = 0
@@ -73,7 +73,7 @@ class NeedlePickCurriculumLearning(PsmEnv):
                 if data.empty:
                     epoch = 0
                 else:
-                    data_epoch = data['epoch']
+                    data_epoch = data['epoch'] + 1
                     epoch = data_epoch.iloc[-1]
             except pd.errors.EmptyDataError:
                 epoch = 0
