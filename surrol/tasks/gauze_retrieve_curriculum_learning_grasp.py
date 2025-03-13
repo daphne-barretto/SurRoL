@@ -3,6 +3,9 @@ import time
 import numpy as np
 import pandas as pd
 
+import sys
+sys.path.append("C:/Users/dbarretto/SurRoL")
+
 import pybullet as p
 from surrol.tasks.psm_env import PsmEnv
 from surrol.utils.pybullet_utils import (
@@ -80,8 +83,6 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
             robot_pos = np.array(gauze_pos) * grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
             # place the gauze in the psm's jaw
             gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
-            self.psm1.close_jaw()
-            print('close jaw')
         else:
             non_grasp_progress = (training_progress - grasp_curriculum_hyperparam) / (1 - grasp_curriculum_hyperparam)
             robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
@@ -103,6 +104,9 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
         p.changeVisualShape(obj_id, -1, specularColor=(0, 0, 0))
         self.obj_ids['rigid'].append(obj_id)  # 0
         self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
+
+        if training_progress < grasp_curriculum_hyperparam:
+            self.psm1.close_jaw()
 
     def _set_action(self, action: np.ndarray):
         action[3] = 0  # no yaw change
