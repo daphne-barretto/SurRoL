@@ -46,9 +46,10 @@ def main():
     color_map = {
         'ddpg': 'red',
         'her': 'green',
-        'demo': 'blue',
+        'herdemo': 'blue',
         'ddpgcl': 'orange',
         'hercl': 'purple',
+        'herdemocl': 'pink',
     }
 
     # go through all directories inside logs_dir
@@ -102,6 +103,9 @@ def main():
             plt.fill_between(trim_epochs[0], mean - std, mean + std, alpha=0.2, color=color)
             plt.fill_between(trim_epochs[0], mean - stderr, mean + stderr, alpha=0.4, color=color)
             plt.legend(loc='lower right', bbox_to_anchor=(0.95, 0.25))  
+
+    if args.task == "NeedleReach":
+        plt.xlim(0, 20)
 
     plt.xlabel('Epoch')
     plt.ylabel('Success Rate')
