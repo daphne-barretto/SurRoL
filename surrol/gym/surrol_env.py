@@ -212,7 +212,7 @@ class SurRoLEnv(gym.Env):
         """
         raise NotImplementedError
 
-    def test(self, horizon=100):
+    def test(self, horizon=10000):
         """
         Run the test simulation without any learning algorithm for debugging purposes
         """
@@ -220,7 +220,7 @@ class SurRoLEnv(gym.Env):
         obs = self.reset()
         while not done and steps <= horizon:
             tic = time.time()
-            action = self.get_oracle_action(obs)
+            # action = self.get_oracle_action(obs)
             print('\n -> step: {}, action: {}'.format(steps, np.round(action, 4)))
             # print('action:', action)
             obs, reward, done, info = self.step(action)
