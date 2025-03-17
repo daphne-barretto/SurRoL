@@ -63,3 +63,16 @@ register(
     entry_point='surrol.tasks.gauze_retrieve_curriculum_learning_grasp_goalmove:GauzeRetrieveCurriculumLearningGraspGoalMove',
     max_episode_steps=50,
 )
+
+# PSM Contact Approx Tasks
+register(
+    id='GauzeRetrieveContactApprox-v0',
+    entry_point='surrol.tasks.gauze_retrieve_contact_approx:GauzeRetrieveContactApprox',
+    max_episode_steps=50,
+)
+
+register(
+    id='GauzeRetrieveContactApproxCurriculumLearning-v0',
+    entry_point='surrol.tasks.gauze_retrieve_contact_approx_curriculum_learning:GauzeRetrieveContactApproxCurriculumLearning',
+    max_episode_steps=50,
+)

@@ -307,10 +307,6 @@ class PsmEnv(SurRoLGoalEnv):
                 if np.linalg.norm(np.array(pos_tip) - np.array(pos_obj)) < 2e-3 * self.SCALING:
                     self._activated = idx
                     # disable collision
-                    p.setCollisionFilterPair(bodyUniqueIdA=psm.body, bodyUniqueIdB=self.obj_id,
-                                             linkIndexA=6, linkIndexB=-1, enableCollision=0)
-                    p.setCollisionFilterPair(bodyUniqueIdA=psm.body, bodyUniqueIdB=self.obj_id,
-                                             linkIndexA=7, linkIndexB=-1, enableCollision=0)
             else:
                 # activate if a physical contact happens
                 points_1 = p.getContactPoints(bodyA=psm.body, linkIndexA=6)
