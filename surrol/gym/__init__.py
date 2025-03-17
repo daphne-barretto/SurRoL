@@ -76,3 +76,16 @@ register(
     entry_point='surrol.tasks.gauze_retrieve_contact_approx_curriculum_learning:GauzeRetrieveContactApproxCurriculumLearning',
     max_episode_steps=50,
 )
+
+# PSM Auto Grasp Tasks
+register(
+    id='GauzeRetrieveAutoGrasp-v0',
+    entry_point='surrol.tasks.gauze_retrieve_auto_grasp:GauzeRetrieveAutoGrasp',
+    max_episode_steps=50,
+)
+
+register(
+    id='GauzeRetrieveAutoGraspCurriculumLearning-v0',
+    entry_point='surrol.tasks.gauze_retrieve_auto_grasp_curriculum_learning:GauzeRetrieveAutoGraspCurriculumLearning',
+    max_episode_steps=50,
+)

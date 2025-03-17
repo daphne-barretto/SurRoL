@@ -57,6 +57,7 @@ class PsmEnv(SurRoLGoalEnv):
         # gripper
         self.block_gripper = True
         self._activated = -1
+        self.auto_grasp = False
 
         super(PsmEnv, self).__init__(render_mode)
 
@@ -211,20 +212,27 @@ class PsmEnv(SurRoLGoalEnv):
         # jaw
         if self.block_gripper:
             action[4] = -1
-        if action[4] < 0:
-            self.psm1.close_jaw()
-            self._activate(0)
-        else:
-            self.psm1.move_jaw(np.deg2rad(40))  # open jaw angle; can tune
-            self._release(0)
-        # time3 = time.time()
-        # print("transform time: {:.4f}, IK time: {:.4f}, jaw time: {:.4f}, total time: {:.4f}"
-        #       .format(time1 - time0, time2 - time1, time3 - time2, time3 - time0))
 
-        # # only for demo
-        # act = self.psm1.get_current_position().reshape(-1)
-        # act = np.append(act, int(action[4] < 0))
-        # self.actions.append(act)
+        # automatically open/close the gripper if near the object even if the action is not given
+        # only implemented for psm1
+        if self.auto_grasp:
+            psm = self.psm1
+            # activate if the distance between the object and the tip below a threshold
+            pos_tip, _ = get_link_pose(psm.body, psm.TIP_LINK_INDEX)
+            if not self._waypoint_goal:
+                link_id = -1
+            else:
+                link_id = self.obj_link1
+            pos_obj, _ = get_link_pose(self.obj_id, link_id)
+            if np.linalg.norm(np.array(pos_tip) - np.array(pos_obj)) < 2e-3 * self.SCALING:
+                self._activated = 0
+        else:
+            if action[4] < 0:
+                self.psm1.close_jaw()
+                self._activate(0)
+            else:
+                self.psm1.move_jaw(np.deg2rad(40))  # open jaw angle; can tune
+                self._release(0)
 
     def _is_success(self, achieved_goal, desired_goal):
         """ Indicates whether or not the achieved goal successfully achieved the desired goal.
@@ -306,7 +314,6 @@ class PsmEnv(SurRoLGoalEnv):
                 pos_obj, _ = get_link_pose(self.obj_id, link_id)
                 if np.linalg.norm(np.array(pos_tip) - np.array(pos_obj)) < 2e-3 * self.SCALING:
                     self._activated = idx
-                    # disable collision
             else:
                 # activate if a physical contact happens
                 points_1 = p.getContactPoints(bodyA=psm.body, linkIndexA=6)
