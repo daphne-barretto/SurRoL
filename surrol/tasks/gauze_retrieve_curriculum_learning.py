@@ -66,7 +66,7 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
-                     epoch = 0
+                        epoch = 0
                 else:
                     data_epoch = data['total/epochs'] + 1
                     epoch = data_epoch.iloc[-1]

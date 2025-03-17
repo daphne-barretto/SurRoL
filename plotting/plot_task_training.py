@@ -109,7 +109,7 @@ def main():
 
     plt.xlabel('Epoch')
     plt.ylabel('Success Rate')
-    plt.ylim(0, 1.05)
+    plt.ylim(0, 0.2)
     plt.title(args.task)
     plt.grid(True)
     plt.tight_layout()
