@@ -86,7 +86,7 @@ class GauzeRetrieveCurriculumLearning(PsmEnv):
         else:
             non_grasp_progress = (training_progress - grasp_curriculum_hyperparam) / (1 - grasp_curriculum_hyperparam)
             robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
-        self.gauze_pos = gauze_pos
+        
         # print('final_initial_robot_pos:', final_initial_robot_pos)
         # print('gauze_pos:', gauze_pos)
         # print('robot_pos:', robot_pos)
