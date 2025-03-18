@@ -129,12 +129,12 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         goal = np.array([workspace_limits[0].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[1].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[2][1] - 0.03 * self.SCALING])
-        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
         if self.training_progress < self.grasp_curriculum_hyperparam:
             rat = self.training_progress/self.grasp_curriculum_hyperparam
         else:
             rat = self.training_progress-self.grasp_curriculum_hyperparam/(1-self.grasp_curriculum_hyperparam)
-        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
+        # final_goal_pos = np.array(goal) * rat + np.array(self.robot_pos) * (1 - rat)
+        final_goal_pos = np.array(goal) * rat + np.array(self.gauze_pos) * (1 - rat)
         # print ("gauze_pos is,", self.gauze_pos)
         print ("final_goal_pos is,", final_goal_pos)
         return final_goal_pos.copy()
