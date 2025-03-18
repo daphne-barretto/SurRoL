@@ -98,7 +98,7 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
         # so that the robot position moves from close to the needle to far away from the needle as training progresses
         # gauze_pos = self.obj_ids['rigid'][0]
         robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
-        # robot_pos[2] += 0.055
+        robot_pos[2] += 0.02
         self.robot_pos = robot_pos
         # print('final_initial_robot_pos:', final_initial_robot_pos)
         print('gauze_pos:', gauze_pos)
@@ -128,8 +128,8 @@ class GauzeRetrieveCurriculumLearningSmarter(PsmEnv):
                          workspace_limits[2][1] - 0.03 * self.SCALING])
         
         # gauze_pos = self.obj_ids['rigid'][0]
-        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
-        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
+        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
+        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
         # print ("gauze_pos is,", self.gauze_pos)
         print ("final_goal_pos is,", final_goal_pos)
         return final_goal_pos.copy()
