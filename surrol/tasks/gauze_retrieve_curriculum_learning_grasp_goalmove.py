@@ -119,7 +119,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         action[3] = 0  # no yaw change
         # if action[4] > 0:
         #     print("JAW OPEN")
-        super(GauzeRetrieveCurriculumLearning, self)._set_action(action)
+        super(GauzeRetrieveCurriculumLearningGraspGoalMove, self)._set_action(action)
 
     def _sample_goal(self) -> np.ndarray:
         """ Samples a new goal and returns it.
