@@ -238,7 +238,9 @@ class PsmEnv(SurRoLGoalEnv):
         """ Indicates whether or not the achieved goal successfully achieved the desired goal.
         """
         d = goal_distance(achieved_goal, desired_goal)
-        return (d < self.distance_threshold).astype(np.float32)
+        ret = (d < self.distance_threshold).astype(np.float32)
+        print("is_succes is ", ret)
+        return ret
 
     def _step_callback(self):
         """ Remove the contact constraint if no contacts
