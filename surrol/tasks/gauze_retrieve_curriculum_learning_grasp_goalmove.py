@@ -44,7 +44,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         final_initial_robot_pos = (workspace_limits[0][0],
                                     workspace_limits[1][1],
                                     (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
-        goal_pos = self._sample_goal()
+        # goal_pos = self._sample_goal()
         
         # set robot position (start state) based on previous evaluation data
         # ================================================
