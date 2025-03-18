@@ -85,6 +85,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         print("training progress is ", training_progress)
         
         grasp_curriculum_hyperparam = 0.5 # how long to train with gauze already in the psm's jaw
+        self.grasp_curriculum_hyperparam = grasp_curriculum_hyperparam
         if training_progress < grasp_curriculum_hyperparam:
             # grasp_progress = training_progress / grasp_curriculum_hyperparam
             robot_pos = final_initial_robot_pos # np.array(gauze_pos) * grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
@@ -129,6 +130,10 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                          workspace_limits[1].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[2][1] - 0.03 * self.SCALING])
         # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
+        if self.training_progress < self.grasp_curriculum_hyperparam:
+            rat = self.training_progress/self.grasp_curriculum_hyperparam
+        else:
+            rat = self.training_progress-self.grasp_curriculum_hyperparam/(1-self.grasp_curriculum_hyperparam)
         final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
         # print ("gauze_pos is,", self.gauze_pos)
         print ("final_goal_pos is,", final_goal_pos)
