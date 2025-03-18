@@ -81,7 +81,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
-            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
+            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
@@ -92,7 +92,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
             except pd.errors.EmptyDataError:
                 epoch = 0
         elif alg == 'hercl':
-            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
+            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
@@ -178,8 +178,9 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                     continue
                 step(1)
                 # place the gauze in the psm's jaw
-                # gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
-                #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
+                gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
+                self.gauze_pos = gauze_pos
+                # p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
                 p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn)
                 cid = p.createConstraint(obj_id, -1, -1, -1,
                                      p.JOINT_FIXED, [0, 0, 0], [0, 0, 0], gauze_pos,
@@ -198,7 +199,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
             gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
                         workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
                         workspace_limits[2][0] + 0.01)
-            self.gauze_pos =gauze_pos
+            self.gauze_pos = gauze_pos
             final_initial_robot_pos = (workspace_limits[0][0],
                                         workspace_limits[1][1],
                                         (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
