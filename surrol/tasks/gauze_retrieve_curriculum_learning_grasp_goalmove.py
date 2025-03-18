@@ -50,7 +50,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
-            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
+            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
@@ -65,7 +65,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 epoch = 0
                 train_success = 0
         elif alg == 'hercl':
-            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
+            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
@@ -80,7 +80,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 epoch = 0
                 train_success =0 
         total_epochs = 50
-        training_progress = (epoch * 1.0 / total_epochs) * train_success
+        training_progress = (epoch * 1.0 / total_epochs) #* train_success
         self.training_progress = training_progress
         print("training progress is ", training_progress)
         

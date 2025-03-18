@@ -239,7 +239,7 @@ class PsmEnv(SurRoLGoalEnv):
         """
         d = goal_distance(achieved_goal, desired_goal)
         ret = (d < self.distance_threshold).astype(np.float32)
-        print("is_succes is ", ret)
+        print("is_success is ", ret)
         return ret
 
     def _step_callback(self):
