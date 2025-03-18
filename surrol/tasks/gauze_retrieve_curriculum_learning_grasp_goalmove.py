@@ -87,7 +87,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         grasp_curriculum_hyperparam = 0.5 # how long to train with gauze already in the psm's jaw
         if training_progress < grasp_curriculum_hyperparam:
             # grasp_progress = training_progress / grasp_curriculum_hyperparam
-            robot_pos = np.array(gauze_pos) #* grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
+            # robot_pos = np.array(gauze_pos) #* grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
             # place the gauze in the psm's jaw
             gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
         else:
