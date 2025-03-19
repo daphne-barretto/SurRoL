@@ -11,7 +11,7 @@ from surrol.utils.pybullet_utils import (
 from surrol.const import ASSET_DIR_PATH
 
 
-class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
+class GauzeRetrieveCurriculumLearningGraspGoalMoveStartMove(PsmEnv):
     """
     Refer to Gym FetchPickAndPlace
     https://github.com/openai/gym/blob/master/gym/envs/robotics/fetch/pick_and_place.py
@@ -23,7 +23,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
     # TODO: grasp is sometimes not stable; check how to fix it
 
     def _env_setup(self):
-        super(GauzeRetrieveCurriculumLearningGraspGoalMove, self)._env_setup()
+        super(GauzeRetrieveCurriculumLearningGraspGoalMoveStartMove, self)._env_setup()
         self.has_object = True
         self._waypoint_goal = True
         # self._contact_approx = True  # mimic the dVRL setting, prove nothing?
@@ -50,7 +50,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         # ================================================
         alg = 'hercl' # 'ddpgcl' or 'hercl'
         if alg == 'ddpgcl':
-            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
+            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningGraspGoalMoveStartMove-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
@@ -65,7 +65,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
                 epoch = 0
                 train_success = 0
         elif alg == 'hercl':
-            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
+            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningGraspGoalMoveStartMove-1e5_0/progress.csv'
             try:
                 data = pd.read_csv(file_path)
                 if data.empty:
@@ -89,13 +89,16 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         if training_progress < grasp_curriculum_hyperparam:
             grasp_progress = training_progress / grasp_curriculum_hyperparam
             # robot_pos = final_initial_robot_pos # np.array(gauze_pos) * grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
-            robot_pos =  np.array(gauze_pos) * grasp_progress + np.array(final_initial_robot_pos) * (1 - grasp_progress)
+            robot_pos =  np.array(gauze_pos) #* grasp_progress + np.array(final_initial_robot_pos) * (1 - grasp_progress)
             # place the gauze in the psm's jaw
             gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
         else:
-            # non_grasp_progress = (training_progress - grasp_curriculum_hyperparam) / (1 - grasp_curriculum_hyperparam)
-            robot_pos = final_initial_robot_pos
+            non_grasp_progress = (training_progress - grasp_curriculum_hyperparam) / (1 - grasp_curriculum_hyperparam)
+            robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
         self.gauze_pos = gauze_pos
+        # print('final_initial_robot_pos:', final_initial_robot_pos)
+        # print('gauze_pos:', gauze_pos)
+        # print('robot_pos:', robot_pos)
         # ================================================
         orn = (0.5, 0.5, -0.5, -0.5)
         joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
@@ -118,7 +121,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         action[3] = 0  # no yaw change
         # if action[4] > 0:
         #     print("JAW OPEN")
-        super(GauzeRetrieveCurriculumLearningGraspGoalMove, self)._set_action(action)
+        super(GauzeRetrieveCurriculumLearningGraspGoalMoveStartMove, self)._set_action(action)
 
     def _sample_goal(self) -> np.ndarray:
         """ Samples a new goal and returns it.
@@ -131,7 +134,10 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
             rat = self.training_progress/self.grasp_curriculum_hyperparam
         else:
             rat = self.training_progress-self.grasp_curriculum_hyperparam/(1-self.grasp_curriculum_hyperparam)
+        # final_goal_pos = np.array(goal) * rat + np.array(self.robot_pos) * (1 - rat)
         final_goal_pos = np.array(goal) * rat + np.array(self.gauze_pos) * (1 - rat)
+        # print ("gauze_pos is,", self.gauze_pos)
+        # print ("final_goal_pos is,", final_goal_pos)
         return final_goal_pos.copy()
 
     def _sample_goal_callback(self):
@@ -183,7 +189,7 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
 
 
 if __name__ == "__main__":
-    env = GauzeRetrieveCurriculumLearningGraspGoalMove(render_mode='human')  # create one process and corresponding env
+    env = GauzeRetrieveCurriculumLearningGraspGoalMoveStartMove(render_mode='human')  # create one process and corresponding env
 
     env.test()
     env.close()
