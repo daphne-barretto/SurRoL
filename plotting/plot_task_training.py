@@ -50,6 +50,7 @@ def main():
         'ddpgcl': 'orange',
         'hercl': 'purple',
         'herdemocl': 'pink',
+        'herdemo-nonapproxdata': 'cyan',
     }
 
     # go through all directories inside logs_dir
