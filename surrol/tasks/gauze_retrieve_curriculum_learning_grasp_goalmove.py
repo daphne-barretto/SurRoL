@@ -7,9 +7,7 @@ import pybullet as p
 from surrol.tasks.psm_env import PsmEnv
 from surrol.utils.pybullet_utils import (
     get_link_pose,
-    step
 )
-from surrol.utils.robotics import get_matrix_from_pose_2d
 from surrol.const import ASSET_DIR_PATH
 
 
@@ -30,23 +28,6 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         self._waypoint_goal = True
         # self._contact_approx = True  # mimic the dVRL setting, prove nothing?
 
-       
-        # robot
-        psm = self.psm1
-        workspace_limits = self.workspace_limits1
-
-        pos = (workspace_limits[0].mean(),
-               workspace_limits[1].mean(),
-               workspace_limits[2].mean())
-        # orn = p.getQuaternionFromEuler(np.deg2rad([0, np.random.uniform(-45, -135), -90]))
-        orn = p.getQuaternionFromEuler(np.deg2rad([0, -90, -90]))  # reduce difficulty
-
-        # psm.reset_joint(self.QPOS_PSM1)
-        joint_positions = psm.inverse_kinematics((pos, orn), psm.EEF_LINK_INDEX)
-        psm.reset_joint(joint_positions)
-
-        self.block_gripper = False  # set the constraint
-        
         workspace_limits = self.workspace_limits1
 
         # tray pad
@@ -57,19 +38,75 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         self.obj_ids['fixed'].append(obj_id)  # 1
         p.changeVisualShape(obj_id, -1, rgbaColor=(225 / 255, 225 / 255, 225 / 255, 1))
 
+        gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
+                     workspace_limits[2][0] + 0.01)
+        final_initial_robot_pos = (workspace_limits[0][0],
+                                    workspace_limits[1][1],
+                                    (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
+        # goal_pos = self._sample_goal()
+        
+        # set robot position (start state) based on previous evaluation data
+        # ================================================
+        alg = 'hercl' # 'ddpgcl' or 'hercl'
+        if alg == 'ddpgcl':
+            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
+            try:
+                data = pd.read_csv(file_path)
+                if data.empty:
+                    epoch = 0
+                    train_success = 0
+                else:
+                    data_epoch = data['total/epochs'] + 1
+                    epoch = data_epoch.iloc[-1]
+                    data_train_success = data['train/success_rate']
+                    train_success = data_train_success.iloc[-1]
+            except pd.errors.EmptyDataError:
+                epoch = 0
+                train_success = 0
+        elif alg == 'hercl':
+            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningGraspGoalMove-1e5_0/progress.csv'
+            try:
+                data = pd.read_csv(file_path)
+                if data.empty:
+                    epoch = 0
+                    train_success = 0
+                else:
+                    data_epoch = data['epoch'] + 1
+                    epoch = data_epoch.iloc[-1]
+                    data_train_success = data['train/success_rate']
+                    train_success = data_train_success.iloc[-1]
+            except pd.errors.EmptyDataError:
+                epoch = 0
+                train_success =0 
+        total_epochs = 50
+        training_progress = (epoch * 1.0 / total_epochs) #* train_success
+        self.training_progress = training_progress
+        # print("training progress is ", training_progress)
+        
+        grasp_curriculum_hyperparam = 0.5 # how long to train with gauze already in the psm's jaw
+        self.grasp_curriculum_hyperparam = grasp_curriculum_hyperparam
+        if training_progress < grasp_curriculum_hyperparam:
+            grasp_progress = training_progress / grasp_curriculum_hyperparam
+            # robot_pos = final_initial_robot_pos # np.array(gauze_pos) * grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
+            robot_pos =  np.array(gauze_pos) #* grasp_progress + np.array(final_initial_robot_pos) * (1 - grasp_progress)
+            # place the gauze in the psm's jaw
+            gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
+        else:
+            non_grasp_progress = (training_progress - grasp_curriculum_hyperparam) / (1 - grasp_curriculum_hyperparam)
+            robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
+        self.gauze_pos = gauze_pos
+        # print('final_initial_robot_pos:', final_initial_robot_pos)
+        # print('gauze_pos:', gauze_pos)
+        # print('robot_pos:', robot_pos)
+        # ================================================
+        orn = (0.5, 0.5, -0.5, -0.5)
+        joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
+        self.psm1.reset_joint(joint_positions)
+
         # gauze
-        # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-        #              workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-        #              workspace_limits[2][0] + 0.01)
-        # self.gauze_pos =gauze_pos
-        limits_span = (workspace_limits[:, 1] - workspace_limits[:, 0]) / 3
-        sample_space = workspace_limits.copy()
-        sample_space[:, 0] += limits_span
-        sample_space[:, 1] -= limits_span
         obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'gauze/gauze.urdf'),
-                            (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,  # TODO: scaling
-                             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                             workspace_limits[2][0] + 0.01),
+                            gauze_pos,
                             (0, 0, 0, 1),
                             useFixedBase=False,
                             globalScaling=self.SCALING)
@@ -77,148 +114,13 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         self.obj_ids['rigid'].append(obj_id)  # 0
         self.obj_id, self.obj_link1 = self.obj_ids['rigid'][0], -1
 
-        # get eopch from saved data
-        # ================================================
-        alg = 'hercl' # 'ddpgcl' or 'hercl'
-        if alg == 'ddpgcl':
-            file_path = './logs/ddpgcl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
-            try:
-                data = pd.read_csv(file_path)
-                if data.empty:
-                    epoch = 0
-                else:
-                    data_epoch = data['total/epochs'] + 1
-                    epoch = data_epoch.iloc[-1]
-            except pd.errors.EmptyDataError:
-                epoch = 0
-        elif alg == 'hercl':
-            file_path = './logs/hercl/GauzeRetrieveCurriculumLearningSmarter-1e5_0/progress.csv'
-            try:
-                data = pd.read_csv(file_path)
-                if data.empty:
-                    epoch = 0
-                else:
-                    data_epoch = data['epoch'] + 1
-                    epoch = data_epoch.iloc[-1]
-            except pd.errors.EmptyDataError:
-                epoch = 0
-        total_epochs = 50
-        training_progress = epoch * 1.0 / total_epochs
-        self.training_progress = training_progress
-        # ================================================
-        # robot
-        robot_pos = (workspace_limits[0][0],
-                                    workspace_limits[1][1],
-                                    (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
-        # set robot position to be between final_initial_pos and needle_pos based on training progress
-        # final_initial_robot_pos = (workspace_limits[0][0],
-        #                             workspace_limits[1][1],
-        #                             (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
-        # set robot position to be between final_initial_pos and needle_pos based on training progress
-        # so that the robot position moves from close to the needle to far away from the needle as training progresses
-        # gauze_pos = self.obj_ids['rigid'][0]
-        # robot_pos = np.array(final_initial_robot_pos) * training_progress + np.array(gauze_pos) * (1 - training_progress)
-        # robot_pos[2]+= 0.055
-        # self.robot_pos = robot_pos
-        # print('final_initial_robot_pos:', final_initial_robot_pos)
-        # print('needle_pos:', gauze_pos)
-        print('robot_pos:', robot_pos)
-        # ================================================
-        
-        psm = self.psm1
-        orn = (0.5, 0.5, -0.5, -0.5)
-        #grasp gauze at start
-        self.grasp_curriculum_hyperparam = 0.5 # how long to train with gauze already in the psm's jaw
-        if training_progress < self.grasp_curriculum_hyperparam:
-            # grasp_progress = training_progress / self.grasp_curriculum_hyperparam
-            # robot_pos = np.array(gauze_pos) * grasp_progress + np.array(goal_pos) * (1 - grasp_progress)
-            while True:
-                # open the jaw
-                psm.open_jaw()
-                # TODO: strange thing that if we use --num_env=1 with openai baselines, the qs vary before and after step!
-                step(0.5)
-
-                # set the position until the psm can grasp it
-                # gauze_pos = np.random.uniform(low=sample_space[:, 0], high=sample_space[:, 1])
-                gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
-                self.gauze_pos = gauze_pos
-                #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
-                # pitch = np.random.uniform(low=-105., high=-75.)  # reduce difficulty
-                # orn_needle = p.getQuaternionFromEuler(np.deg2rad([-90, pitch, 90]))
-                p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn)
-
-                # record the needle pose and move the psm to grasp the needle
-                pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link1)  # the right side waypoint
-                self._waypoint_z_init = pos_waypoint[2]
-                orn_waypoint = np.rad2deg(p.getEulerFromQuaternion(orn_waypoint))
-                p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
-
-                # get the eef pose according to the needle pose
-                orn_tip = p.getQuaternionFromEuler(np.deg2rad([90, -90 - orn_waypoint[1], 90]))
-                pose_tip = [pos_waypoint + np.array([0.0015 * self.SCALING, 0, 0]), orn_tip]
-                pose_eef = psm.pose_tip2eef(pose_tip)
-
-                # # gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-                # #             workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                # #             workspace_limits[2][0] + 0.01)
-                # # self.gauze_pos =gauze_pos
-
-                # gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
-                # self.gauze_pos =gauze_pos
-                # # pos_waypoint, orn_waypoint = get_link_pose(obj_id, self.obj_link2)  # the right side waypoint
-                # # p.resetBasePositionAndOrientation(obj_id, (0, 0, 0.01 * self.SCALING), (0, 0, 0, 1))
-                # pose_tip = [gauze_pos + np.array([0.0015 * self.SCALING, 0, 0]), orn]
-                # pose_eef = psm.pose_tip2eef(pose_tip)
-
-                # move the psm
-                pose_world = get_matrix_from_pose_2d(pose_eef)
-                action_rcm = psm.pose_world2rcm(pose_world)
-                success = psm.move(action_rcm)
-                if success is False:
-                    continue
-                step(1)
-                # place the gauze in the psm's jaw
-                # gauze_pos = (robot_pos[0], robot_pos[1], robot_pos[2] - (-0.0007 + 0.0102) * self.SCALING)
-                #             p.resetBasePositionAndOrientation(obj_id, pos_needle, orn_needle)
-                p.resetBasePositionAndOrientation(obj_id, gauze_pos, orn)
-                cid = p.createConstraint(obj_id, -1, -1, -1,
-                                     p.JOINT_FIXED, [0, 0, 0], [0, 0, 0], gauze_pos,
-                                     childFrameOrientation=orn)
-                psm.close_jaw()
-                step(0.5)
-                p.removeConstraint(cid)
-                self._activate(0)
-                self._step_callback()
-                step(1)
-                self._step_callback()
-                self.robot_pos = pos_waypoint
-                if self._activated >= 0:
-                    break
-        else:
-            gauze_pos = (workspace_limits[0].mean() + (np.random.rand() - 0.5) * 0.1,
-                        workspace_limits[1].mean() + (np.random.rand() - 0.5) * 0.1,
-                        workspace_limits[2][0] + 0.01)
-            self.gauze_pos =gauze_pos
-            final_initial_robot_pos = (workspace_limits[0][0],
-                                        workspace_limits[1][1],
-                                        (workspace_limits[2][1] + workspace_limits[2][0]) / 2)
-            non_grasp_progress = (training_progress - self.grasp_curriculum_hyperparam) / (1 - self.grasp_curriculum_hyperparam)
-            robot_pos = np.array(final_initial_robot_pos) * non_grasp_progress + np.array(gauze_pos) * (1 - non_grasp_progress)
-            self.robot_pos = robot_pos
-            # ================================================
-
-            orn = (0.5, 0.5, -0.5, -0.5)
-            joint_positions = self.psm1.inverse_kinematics((robot_pos, orn), self.psm1.EEF_LINK_INDEX)
-            self.psm1.reset_joint(joint_positions)
-            self.block_gripper = False
-        print('gauze_pos:', gauze_pos)
-        print('robot_pos:', self.robot_pos)
-        
-    
-
+        if training_progress < grasp_curriculum_hyperparam:
+            self.psm1.close_jaw()
 
     def _set_action(self, action: np.ndarray):
         action[3] = 0  # no yaw change
+        # if action[4] > 0:
+        #     print("JAW OPEN")
         super(GauzeRetrieveCurriculumLearningGraspGoalMove, self)._set_action(action)
 
     def _sample_goal(self) -> np.ndarray:
@@ -228,12 +130,14 @@ class GauzeRetrieveCurriculumLearningGraspGoalMove(PsmEnv):
         goal = np.array([workspace_limits[0].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[1].mean() + 0.02 * np.random.randn() * self.SCALING,
                          workspace_limits[2][1] - 0.03 * self.SCALING])
-        
-        # gauze_pos = self.obj_ids['rigid'][0]
-        # final_goal_pos = np.array(goal) * self.training_progress + np.array(self.robot_pos) * (1 - self.training_progress)
-        final_goal_pos = np.array(goal) * self.training_progress + np.array(self.gauze_pos) * (1 - self.training_progress)
+        if self.training_progress < self.grasp_curriculum_hyperparam:
+            rat = self.training_progress/self.grasp_curriculum_hyperparam
+        else:
+            rat = self.training_progress-self.grasp_curriculum_hyperparam/(1-self.grasp_curriculum_hyperparam)
+        # final_goal_pos = np.array(goal) * rat + np.array(self.robot_pos) * (1 - rat)
+        final_goal_pos = np.array(goal) * rat + np.array(self.gauze_pos) * (1 - rat)
         # print ("gauze_pos is,", self.gauze_pos)
-        print ("final_goal_pos is,", final_goal_pos)
+        # print ("final_goal_pos is,", final_goal_pos)
         return final_goal_pos.copy()
 
     def _sample_goal_callback(self):
