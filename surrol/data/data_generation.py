@@ -9,6 +9,7 @@ import gym
 import time
 import numpy as np
 import imageio
+import surrol.gym
 from surrol.const import ROOT_DIR_PATH
 
 parser = argparse.ArgumentParser(description='generate demonstrations for imitation')
