@@ -26,6 +26,12 @@ register(
     max_episode_steps=50,
 )
 
+register(
+    id='BlockConditionedPegTransfer-v0',
+    entry_point='surrol.tasks.peg_transfer_block_condition:BlockConditionedPegTransfer',
+    max_episode_steps=50,
+)
+
 # Bimanual PSM Env
 register(
     id='NeedleRegrasp-v0',
