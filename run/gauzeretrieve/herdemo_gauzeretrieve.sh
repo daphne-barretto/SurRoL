@@ -1,5 +1,5 @@
 python -m baselines.run \
---num_env=2 --alg=her --env=GauzeRetrieve-v0 \
+--num_env=2 --alg=her --env=GauzeRetrieve-v0 --eval_env=GauzeRetrieve-v0 \
 --num_timesteps=1e5 \
 --policy_save_interval=5 \
 --demo_file=./surrol/data/demo/data_GauzeRetrieve-v0_random_100.npz \

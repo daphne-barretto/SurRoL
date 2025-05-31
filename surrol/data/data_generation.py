@@ -18,6 +18,8 @@ parser.add_argument('--video', action='store_true',
                     help='whether or not to record video')
 parser.add_argument('--steps', type=int,
                     help='how many steps allowed to run')
+parser.add_argument('--num_itr', type=int, default=100,
+                    help='how many iterations to run')
 args = parser.parse_args()
 
 actions = []
@@ -29,8 +31,8 @@ masks = []
 
 
 def main():
-    env = gym.make(args.env, render_mode='human')  # 'human'
-    num_itr = 100 if not args.video else 1
+    env = gym.make(args.env, render_mode='None')  # 'human'
+    num_itr = args.num_itr
     cnt = 0
     init_state_space = 'random'
     env.reset()
@@ -47,10 +49,13 @@ def main():
         goToGoal(env, obs)
         cnt += 1
 
+    datetime = time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime())
+
     file_name = "data_"
     file_name += args.env
     file_name += "_" + init_state_space
     file_name += "_" + str(num_itr)
+    file_name += "_" + datetime
     file_name += ".npz"
 
     folder = 'demo' if not args.video else 'video'
@@ -64,7 +69,11 @@ def main():
 
     if args.video:
         video_name = "video_"
-        video_name += args.env + ".mp4"
+        video_name += args.env
+        video_name += "_" + init_state_space
+        video_name += "_" + str(num_itr)
+        video_name += "_" + datetime
+        video_name += ".mp4"
         writer = imageio.get_writer(os.path.join(folder, video_name), fps=20)
         for img in images:
             writer.append_data(img)

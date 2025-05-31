@@ -26,6 +26,12 @@ register(
     max_episode_steps=50,
 )
 
+register(
+    id='NeedleReachRandom-v0',
+    entry_point='surrol.tasks.needle_reach_random:NeedleReachRandom',
+    max_episode_steps=50,
+)
+
 # PSM Curriculum Learning Env
 register(
     id='NeedleReachCurriculumLearning-v0',

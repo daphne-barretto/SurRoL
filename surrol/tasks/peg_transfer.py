@@ -43,9 +43,16 @@ class PegTransfer(PsmEnv):
         np.random.shuffle(self._pegs[6: 12])
 
         # blocks
-        num_blocks = 4
+        self.num_blocks = 4
+        self.block_colors = [
+            (1.0, 0.0, 0.0, 1.0),  # red
+            (0.0, 1.0, 0.0, 1.0),  # green
+            (0.0, 0.0, 1.0, 1.0),  # blue
+            (1.0, 1.0, 0.0, 1.0)   # yellow
+        ]
         # for i in range(6, 6 + num_blocks):
-        for i in self._pegs[6: 6 + num_blocks]:
+        count = 0
+        for i in self._pegs[6: 6 + self.num_blocks]:
             pos, orn = get_link_pose(self.obj_ids['fixed'][1], i)
             yaw = (np.random.rand() - 0.5) * np.deg2rad(60)
             obj_id = p.loadURDF(os.path.join(ASSET_DIR_PATH, 'block/block.urdf'),
@@ -54,11 +61,12 @@ class PegTransfer(PsmEnv):
                                 useFixedBase=False,
                                 globalScaling=self.SCALING)
             self.obj_ids['rigid'].append(obj_id)
-        self._blocks = np.array(self.obj_ids['rigid'][-num_blocks:])
+
+            color = self.block_colors[count]
+            p.changeVisualShape(obj_id, -1, rgbaColor=color)
+            count += 1
+        self._blocks = np.array(self.obj_ids['rigid'][-self.num_blocks:])
         np.random.shuffle(self._blocks)
-        for obj_id in self._blocks[:1]:
-            # change color to red
-            p.changeVisualShape(obj_id, -1, rgbaColor=(255 / 255, 69 / 255, 58 / 255, 1))
         self.obj_id, self.obj_link1 = self._blocks[0], 1
 
     def _is_success(self, achieved_goal, desired_goal):
@@ -69,6 +77,24 @@ class PegTransfer(PsmEnv):
             goal_distance(achieved_goal[..., :2], desired_goal[..., :2]) < 5e-3 * self.SCALING,
             np.abs(achieved_goal[..., -1] - desired_goal[..., -1]) < 4e-3 * self.SCALING
         ).astype(np.float32)
+
+    def _get_obs(self) -> dict:
+        """ Returns the observation with block specification.
+        """
+        obs = super()._get_obs()
+
+        block_color = p.getVisualShapeData(self.obj_id, -1)[0][7]
+
+        # one hot of target block
+        block_encoding = np.zeros(self.num_blocks)
+        if block_color in self.block_colors:
+            self.current_target_block_id = self.block_colors.index(block_color)  
+        block_encoding[self.current_target_block_id] = 1
+
+        obs['block_encoding'] = block_encoding
+
+        print("obs['block_encoding']:", obs['block_encoding'])
+        return obs
 
     def _sample_goal(self) -> np.ndarray:
         """ Samples a new goal and returns it.
