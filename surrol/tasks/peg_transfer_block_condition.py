@@ -209,10 +209,14 @@ class BlockConditionedPegTransfer(PsmEnv):
         block_encoding = np.zeros(self.num_blocks)
         block_encoding[self.current_target_block_id] = 1.0
         
+        target_block_pos = self._get_current_position_of_target_block()
+
         # Combine all features
         full_obs = np.concatenate([
             base_obs['observation'],      # Base robot state
-            block_encoding               # One-hot encoding of target block
+            block_encoding,               # One-hot encoding of target block
+            target_block_pos,             # Current target block position
+            self.goal,                    # Target peg position for current block
         ], dtype=np.float32)
         
         # print(f"full_obs.shape: {full_obs.shape}")
