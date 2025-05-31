@@ -68,6 +68,7 @@ class PegTransfer(PsmEnv):
         self._blocks = np.array(self.obj_ids['rigid'][-self.num_blocks:])
         np.random.shuffle(self._blocks)
         self.obj_id, self.obj_link1 = self._blocks[0], 1
+        np.random.shuffle(self._blocks)
 
     def _is_success(self, achieved_goal, desired_goal):
         """ Indicates whether or not the achieved goal successfully achieved the desired goal.
@@ -83,6 +84,29 @@ class PegTransfer(PsmEnv):
         """
         obs = super()._get_obs()
 
+        # OBSERVATION
+        robot_state = self._get_robot_state(idx=0)
+        pos, orn = get_link_pose(self.obj_id, self.obj_link1)
+        waypoint_pos = np.array(pos)
+        # rotations
+        waypoint_rot = np.array(p.getEulerFromQuaternion(orn))
+        # relative position state
+
+        # add robot_state to observation
+        observation = robot_state.copy()
+
+        for block in self._blocks:
+            pos, _ = get_link_pose(block, -1)
+            object_pos = np.array(pos)
+            object_rel_pos = object_pos - robot_state[0: 3]
+            observation = np.concatenate([
+                observation, object_pos.ravel(), object_rel_pos.ravel()
+            ])
+
+        obs['observation'] = observation
+
+        # BLOCK_ENCODING
+
         block_color = p.getVisualShapeData(self.obj_id, -1)[0][7]
 
         # one hot of target block
@@ -94,6 +118,8 @@ class PegTransfer(PsmEnv):
         obs['block_encoding'] = block_encoding
 
         print("obs['block_encoding']:", obs['block_encoding'])
+
+        # RETURN
         return obs
 
     def _sample_goal(self) -> np.ndarray:
