@@ -27,6 +27,60 @@ register(
 )
 
 register(
+    id='PegTransferTargetBlock-v0',
+    entry_point='surrol.tasks.peg_transfer_target_block:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferTargetBlockTargetPeg-v0',
+    entry_point='surrol.tasks.peg_transfer_target_block_and_target_peg:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferOneHotTargetPeg-v0',
+    entry_point='surrol.tasks.peg_transfer_onehot_and_target_peg:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferColor-v0',
+    entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferColorTargetBlock-v0',
+    entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored_target_block:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferColorTargetBlockTargetPeg-v0',
+    entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored_target_block_peg:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferColorOneHotTargetPeg-v0',
+    entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored_one_hot_target_peg:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferTBO-v0',
+    entry_point='surrol.tasks.peg_transfer_with_only_target_block:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferFourTuple-v0',
+    entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored_four_tuple:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
     id='NeedleReachRandom-v0',
     entry_point='surrol.tasks.needle_reach_random:NeedleReachRandom',
     max_episode_steps=50,

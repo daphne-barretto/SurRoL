@@ -69,7 +69,6 @@ class PegTransfer(PsmEnv):
         np.random.shuffle(self._blocks)
         self.obj_id, self.obj_link1 = self._blocks[0], 1
         np.random.shuffle(self._blocks)
-        self.current_target_block_id = 0
 
     def _is_success(self, achieved_goal, desired_goal):
         """ Indicates whether or not the achieved goal successfully achieved the desired goal.
@@ -95,14 +94,23 @@ class PegTransfer(PsmEnv):
 
         # add robot_state to observation
         observation = robot_state.copy()
+        # print("robot_state:", robot_state)
 
         for block in self._blocks:
             pos, _ = get_link_pose(block, -1)
             object_pos = np.array(pos)
             object_rel_pos = object_pos - robot_state[0: 3]
+            object_color = p.getVisualShapeData(block, -1)[0][7]
             observation = np.concatenate([
-                observation, object_pos.ravel(), object_rel_pos.ravel()
+                observation, object_pos.ravel(), object_rel_pos.ravel(),
+                object_color
             ])
+            # print("object_pos:", object_pos, "object_rel_pos:", object_rel_pos)
+
+        
+
+        # print("")
+        # print("obs['observation']:", obs['observation'])
 
         # BLOCK_ENCODING
 
@@ -118,7 +126,10 @@ class PegTransfer(PsmEnv):
 
         # print("obs['block_encoding']:", obs['block_encoding'])
 
-        observation = np.concatenate([observation, block_encoding])
+        # print("obs['achieved_goal']:", obs['achieved_goal'])
+        # print("obs['desired_goal']:", obs['desired_goal'])
+
+        observation = np.concatenate([observation, obs['achieved_goal'], obs['desired_goal']])
         obs['observation'] = observation
 
         # RETURN

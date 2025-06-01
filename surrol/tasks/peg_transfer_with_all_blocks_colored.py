@@ -107,10 +107,10 @@ class PegTransfer(PsmEnv):
             ])
             # print("object_pos:", object_pos, "object_rel_pos:", object_rel_pos)
 
-        obs['observation'] = observation
+        
 
         # print("")
-        print("obs['observation']:", obs['observation'])
+        # print("obs['observation']:", obs['observation'])
 
         # BLOCK_ENCODING
 
@@ -124,10 +124,13 @@ class PegTransfer(PsmEnv):
 
         obs['block_encoding'] = block_encoding
 
-        print("obs['block_encoding']:", obs['block_encoding'])
+        # print("obs['block_encoding']:", obs['block_encoding'])
 
-        print("obs['achieved_goal']:", obs['achieved_goal'])
-        print("obs['desired_goal']:", obs['desired_goal'])
+        # print("obs['achieved_goal']:", obs['achieved_goal'])
+        # print("obs['desired_goal']:", obs['desired_goal'])
+
+        observation = np.concatenate([observation, block_encoding])
+        obs['observation'] = observation
 
         # RETURN
         return obs

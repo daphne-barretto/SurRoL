@@ -117,9 +117,15 @@ class PegTransfer(PsmEnv):
         obs['block_encoding'] = block_encoding
 
         # print("obs['block_encoding']:", obs['block_encoding'])
-
-        observation = np.concatenate([observation, block_encoding])
+        observation = np.concatenate([observation, obs['achieved_goal']])
         obs['observation'] = observation
+
+# elif condition_type == "target_block":
+#         return np.hstack([observation, achieved_goal])
+#     elif condition_type == "target_block_and_target_peg":
+#         return np.hstack([observation, achieved_goal, desired_goal])
+#     elif condition_type == "one_hot_and_target_peg":
+#         return np.hstack([observation, block_encoding, desired_goal])
 
         # RETURN
         return obs
