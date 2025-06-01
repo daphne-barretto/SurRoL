@@ -42,6 +42,21 @@ def apply_condition_type(observation, block_encoding, achieved_goal, desired_goa
             print("ERROR")
             return
         return np.hstack([observation, four_tuple])
+    elif condition_type == "color_language":
+        color_language = None
+        # switch from block encoding to block color
+        if (np.allclose(block_encoding, [1.0, 0.0, 0.0, 0.0])):
+            color_language = "red"
+        elif (np.allclose(block_encoding, [0.0, 1.0, 0.0, 0.0])):
+            color_language = "green"
+        elif (np.allclose(block_encoding, [0.0, 0.0, 1.0, 0.0])):
+            color_language = "blue"
+        elif (np.allclose(block_encoding, [0.0, 0.0, 0.0, 1.0])):
+            color_language = "yellow"
+        else:
+            print("ERROR")
+            return
+        return np.hstack([observation, color_language])
     else:
         print(f"Invalid condition type: {condition_type}")
         exit(1)
@@ -129,7 +144,7 @@ if __name__ == "__main__":
     parser.add_argument('--output_path', type=str, default=None, 
                        help='Path to output .npz file (default: input_path with _postprocessed suffix)')
     parser.add_argument('--condition_type', type=str, default="one_hot",
-                       choices=["one_hot", "target_block", "target_block_and_target_peg", "one_hot_and_target_peg", "four_tuple"],
+                       choices=["one_hot", "target_block", "target_block_and_target_peg", "one_hot_and_target_peg", "four_tuple", "color_language"],
                        help='Type of conditioning to apply (default: one_hot)')
     
     args = parser.parse_args()

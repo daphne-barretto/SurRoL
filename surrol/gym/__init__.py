@@ -81,6 +81,12 @@ register(
 )
 
 register(
+    id='PegTransferColorLanguage-v0',
+    entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored_color_language:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
     id='NeedleReachRandom-v0',
     entry_point='surrol.tasks.needle_reach_random:NeedleReachRandom',
     max_episode_steps=50,
