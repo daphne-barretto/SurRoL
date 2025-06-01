@@ -136,6 +136,7 @@ class PegTransfer(PsmEnv):
         #     (1.0, 1.0, 0.0, 1.0)   # yellow
         # ]
 
+        four_tuple = None
         # switch from block encoding to block color
         if (np.allclose(block_encoding, [1.0, 0.0, 0.0, 0.0])):
             four_tuple = self.block_colors[0]
@@ -149,7 +150,7 @@ class PegTransfer(PsmEnv):
             print("ERROR")
             return
 
-        observation = np.concatenate([observation, block_color])
+        observation = np.concatenate([observation, four_tuple])
         obs['observation'] = observation
 
         # RETURN

@@ -28,7 +28,7 @@ def apply_condition_type(observation, block_encoding, achieved_goal, desired_goa
             (1.0, 1.0, 0.0, 1.0)   # yellow
         ]
 
-        four_tuple = [0.0, 0.0, 0.0, 0.0]
+        four_tuple = None
         # switch from block encoding to block color
         if (np.allclose(block_encoding, [1.0, 0.0, 0.0, 0.0])):
             four_tuple = block_colors[0]
