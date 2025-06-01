@@ -3,7 +3,7 @@ Example usage:
 python data_postprocessing.py /path/to/npz --output_path /path/to/output/npz --condition_type <one_hot/target_block/...>
 
 e.g.
-python data_postprocessing.py data_PegTransfer-v0_random_10000_2025-05-31_14-46-53.npz --output_path data_PegTransfer-v0_random_10000_2025-05-31_14-46-53_targetblock.npz --condition_type target_block
+python data_postprocessing.py two_blocks_color/data_PegTransfer-v0_random_1000_2025-06-01_10-06-51.npz --output_path two_blocks_color/data_PegTransfer-v0_random_1000_2025-06-01_10-06-51_onehot.npz --condition_type one_hot
 """
 
 import numpy as np
@@ -29,18 +29,11 @@ def apply_condition_type(observation, block_encoding, achieved_goal, desired_goa
         ]
 
         four_tuple = None
-        # switch from block encoding to block color
-        if (np.allclose(block_encoding, [1.0, 0.0, 0.0, 0.0])):
-            four_tuple = block_colors[0]
-        elif (np.allclose(block_encoding, [0.0, 1.0, 0.0, 0.0])):
-            four_tuple = block_colors[1]
-        elif (np.allclose(block_encoding, [0.0, 0.0, 1.0, 0.0])):
-            four_tuple = block_colors[2]
-        elif (np.allclose(block_encoding, [0.0, 0.0, 0.0, 1.0])):
-            four_tuple = block_colors[3]
-        else:
-            print("ERROR")
-            return
+        # Ensure there's exactly one '1' in block_encoding
+        assert np.sum(block_encoding == 1) == 1, "ERROR: block_encoding must have exactly one '1'"
+
+        # Get the index where block_encoding is 1
+        four_tuple = block_colors[np.where(block_encoding == 1)[0][0]]
         return np.hstack([observation, four_tuple])
     elif condition_type == "color_language":
         color_language = None
@@ -165,8 +158,5 @@ if __name__ == "__main__":
     print(f"Output file: {args.output_path}")
     print(f"Condition type: {args.condition_type}")
 
-    try:
-        postprocessed_data = postprocess_demo_data(args.input_path, args.output_path, args.condition_type)
-        print("postprocessing completed successfully!")
-    except Exception as e:
-        print(f"Error during postprocessing: {e}")
+    postprocessed_data = postprocess_demo_data(args.input_path, args.output_path, args.condition_type)
+    print("postprocessing completed successfully!")
