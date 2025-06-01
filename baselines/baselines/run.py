@@ -71,6 +71,7 @@ def train(args, extra_args):
         if alg_kwargs.get('network') is None:
             alg_kwargs['network'] = get_default_network(env_type)
 
+    eval_env = env
     if args.eval_env:
         eval_args = args
         eval_args.env = args.eval_env

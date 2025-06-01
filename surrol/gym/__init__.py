@@ -45,6 +45,12 @@ register(
 )
 
 register(
+    id='PegTransferAllBlocksFourTuple-v0',
+    entry_point='surrol.tasks.peg_transfer_four_tuple:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
     id='PegTransferColor-v0',
     entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored:PegTransfer',
     max_episode_steps=50,

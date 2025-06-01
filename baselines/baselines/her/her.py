@@ -36,6 +36,8 @@ def train(*, policy, rollout_worker, evaluator,
 
     # num_timesteps = n_epochs * n_cycles * rollout_length * number of rollout workers
     for epoch in range(n_epochs):
+        import time
+        start = time.time()
         # train
         rollout_worker.clear_history()
         for _ in range(n_cycles):
@@ -52,6 +54,7 @@ def train(*, policy, rollout_worker, evaluator,
 
         # record logs
         logger.record_tabular('epoch', epoch)
+        logger.record_tabular('time', time.time() - start)
         for key, val in evaluator.logs('test'):
             logger.record_tabular(key, mpi_average(val))
         for key, val in rollout_worker.logs('train'):

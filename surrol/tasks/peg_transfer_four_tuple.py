@@ -69,6 +69,7 @@ class PegTransfer(PsmEnv):
         np.random.shuffle(self._blocks)
         self.obj_id, self.obj_link1 = self._blocks[0], 1
         np.random.shuffle(self._blocks)
+        self.current_target_block_id = 0
 
     def _is_success(self, achieved_goal, desired_goal):
         """ Indicates whether or not the achieved goal successfully achieved the desired goal.
@@ -94,23 +95,14 @@ class PegTransfer(PsmEnv):
 
         # add robot_state to observation
         observation = robot_state.copy()
-        # print("robot_state:", robot_state)
 
         for block in self._blocks:
             pos, _ = get_link_pose(block, -1)
             object_pos = np.array(pos)
             object_rel_pos = object_pos - robot_state[0: 3]
-            object_color = p.getVisualShapeData(block, -1)[0][7]
             observation = np.concatenate([
-                observation, object_pos.ravel(), object_rel_pos.ravel(),
-                object_color
+                observation, object_pos.ravel(), object_rel_pos.ravel()
             ])
-            # print("object_pos:", object_pos, "object_rel_pos:", object_rel_pos)
-
-        
-
-        # print("")
-        # print("obs['observation']:", obs['observation'])
 
         # BLOCK_ENCODING
 
@@ -126,31 +118,21 @@ class PegTransfer(PsmEnv):
 
         # print("obs['block_encoding']:", obs['block_encoding'])
 
-        # print("obs['achieved_goal']:", obs['achieved_goal'])
-        # print("obs['desired_goal']:", obs['desired_goal'])
-
-        # self.block_colors = [
-        #     (1.0, 0.0, 0.0, 1.0),  # red
-        #     (0.0, 1.0, 0.0, 1.0),  # green
-        #     (0.0, 0.0, 1.0, 1.0),  # blue
-        #     (1.0, 1.0, 0.0, 1.0)   # yellow
-        # ]
-
-        color_language = None
+        four_tuple = None
         # switch from block encoding to block color
         if (np.allclose(block_encoding, [1.0, 0.0, 0.0, 0.0])):
-            color_language = "red"
+            four_tuple = self.block_colors[0]
         elif (np.allclose(block_encoding, [0.0, 1.0, 0.0, 0.0])):
-            color_language = "green"
+            four_tuple = self.block_colors[1]
         elif (np.allclose(block_encoding, [0.0, 0.0, 1.0, 0.0])):
-            color_language = "blue"
+            four_tuple = self.block_colors[2]
         elif (np.allclose(block_encoding, [0.0, 0.0, 0.0, 1.0])):
-            color_language = "yellow"
+            four_tuple = self.block_colors[3]
         else:
             print("ERROR")
             return
 
-        observation = np.concatenate([observation, [color_language]])
+        observation = np.concatenate([observation, four_tuple])
         obs['observation'] = observation
 
         # RETURN
