@@ -81,6 +81,12 @@ register(
 )
 
 register(
+    id='PegTransferTBOTwoBlock-v0',
+    entry_point='surrol.tasks.peg_transfer-two_blocks-with_only_target_block:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
     id='PegTransferFourTuple-v0',
     entry_point='surrol.tasks.peg_transfer_with_all_blocks_colored_four_tuple:PegTransfer',
     max_episode_steps=50,
@@ -101,36 +107,6 @@ register(
 register(
     id='PegTransferTwoBlocksFourTuple-v0',
     entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks_colored-no_obs_four_tuple:PegTransfer',
-    max_episode_steps=50,
-)
-
-register(
-    id='PegTransferTwoBlocksNoColorOneHot-v0',
-    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks-no_obs:PegTransfer',
-    max_episode_steps=50,
-)
-
-register(
-    id='PegTransferTwoBlocksNoColorOneHotTargetPeg-v0',
-    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks-no_obs_one_hot_target_peg:PegTransfer',
-    max_episode_steps=50,
-)
-
-register(
-    id='PegTransferTwoBlocksNoColorTargetBlock-v0',
-    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks-no_obs_target_block:PegTransfer',
-    max_episode_steps=50,
-)
-
-register(
-    id='PegTransferTwoBlocksNoColorTargetBlockTargetPeg-v0',
-    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks-no_obs_target_block_peg:PegTransfer',
-    max_episode_steps=50,
-)
-
-register(
-    id='PegTransferTwoBlocksNoColorFourTuple-v0',
-    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks-no_obs_four_tuple:PegTransfer',
     max_episode_steps=50,
 )
 
