@@ -125,7 +125,7 @@ class PegTransfer(PsmEnv):
         # print("obs['desired_goal']:", obs['desired_goal'])
 
         
-        # observation = np.concatenate([observation, block_encoding])
+        observation = np.concatenate([observation, block_encoding])
         obs['observation'] = observation
         # RETURN
         return obs
