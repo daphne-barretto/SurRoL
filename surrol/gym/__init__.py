@@ -123,6 +123,18 @@ register(
 )
 
 register(
+    id='PegTransferTwoBlocksTargetBlock-v0',
+    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks-no_obs_target_block:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferTwoBlocksColorTargetBlock-v0',
+    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks_colored-targetblock:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
     id='NeedleReachRandom-v0',
     entry_point='surrol.tasks.needle_reach_random:NeedleReachRandom',
     max_episode_steps=50,
