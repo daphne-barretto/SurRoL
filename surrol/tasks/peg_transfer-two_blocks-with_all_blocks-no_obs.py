@@ -96,13 +96,13 @@ class PegTransfer(PsmEnv):
         observation = robot_state.copy()
         # print("robot_state:", robot_state)
 
-        pos, _ = get_link_pose(self.obj_id, -1)
-        object_pos = np.array(pos)
-        object_rel_pos = object_pos - robot_state[0: 3]
-        object_color = p.getVisualShapeData(self.obj_id, -1)[0][7]
-        observation = np.concatenate([
-            observation, object_pos.ravel(), object_rel_pos.ravel()
-        ])
+        for block in self._blocks:
+            pos, _ = get_link_pose(block, -1)
+            object_pos = np.array(pos)
+            object_rel_pos = object_pos - robot_state[0: 3]
+            observation = np.concatenate([
+                observation, object_pos.ravel(), object_rel_pos.ravel()
+            ])
 
         # print("")
         # print("obs['observation']:", obs['observation'])
@@ -125,7 +125,7 @@ class PegTransfer(PsmEnv):
         # print("obs['desired_goal']:", obs['desired_goal'])
 
         
-        observation = np.concatenate([observation, block_encoding])
+        # observation = np.concatenate([observation, block_encoding])
         obs['observation'] = observation
         # RETURN
         return obs
