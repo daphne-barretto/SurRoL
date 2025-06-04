@@ -57,6 +57,12 @@ register(
     max_episode_steps=50,
 )
 
+register(
+    id='PegTransferTwoBlocksOneHotTargetPeg-v0',
+    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks-no_obs_one_hot_target_peg:PegTransfer',
+    max_episode_steps=50,
+)
+
 # 2 Blocks with All block positions and colors
 
 register(
@@ -80,6 +86,12 @@ register(
 register(
     id='PegTransferTwoBlocksColorTargetBlock-v0',
     entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks_colored-targetblock:PegTransfer',
+    max_episode_steps=50,
+)
+
+register(
+    id='PegTransferTwoBlocksColorOneHotTargetPeg-v0',
+    entry_point='surrol.tasks.peg_transfer-two_blocks-with_all_blocks_colored-onehottargetpeg:PegTransfer',
     max_episode_steps=50,
 )
 
