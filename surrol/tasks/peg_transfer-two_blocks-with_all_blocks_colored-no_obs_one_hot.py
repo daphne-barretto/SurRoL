@@ -100,8 +100,10 @@ class PegTransfer(PsmEnv):
             pos, _ = get_link_pose(block, -1)
             object_pos = np.array(pos)
             object_rel_pos = object_pos - robot_state[0: 3]
+            object_color = p.getVisualShapeData(block, -1)[0][7]
             observation = np.concatenate([
-                observation, object_pos.ravel(), object_rel_pos.ravel()
+                observation, object_pos.ravel(), object_rel_pos.ravel(),
+                object_color
             ])
 
         # print("")
