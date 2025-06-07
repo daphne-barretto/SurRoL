@@ -1,0 +1,626 @@
+{
+  "conditioning_type": "none",
+  "is_postprocessed": false,
+  "data_analysis": {
+    "filename": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+    "is_postprocessed": false,
+    "conditioning_type": "none",
+    "total_episodes": 1000,
+    "observation_keys": [
+      "observation",
+      "achieved_goal",
+      "desired_goal",
+      "block_encoding"
+    ],
+    "base_obs_dim": 13,
+    "has_achieved_goal": true,
+    "has_desired_goal": true,
+    "has_block_encoding": true,
+    "goal_dim": 3,
+    "block_encoding_dim": 2,
+    "num_blocks": 2,
+    "base_data_type": "all_blocks_2"
+  },
+  "episodes": [
+    {
+      "episode": 1,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": [
+        {
+          "step": 0,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.6639593839645386,
+            -0.5194191932678223,
+            -0.099530428647995
+          ]
+        },
+        {
+          "step": 1,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.42696672677993774,
+            -0.46647778153419495,
+            -0.07926151901483536
+          ]
+        },
+        {
+          "step": 2,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.5051424503326416,
+            -0.8912988305091858,
+            -0.026423294097185135
+          ]
+        },
+        {
+          "step": 3,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.7607890963554382,
+            -0.7199284434318542,
+            0.0005211345851421356
+          ]
+        },
+        {
+          "step": 4,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.5966059565544128,
+            -0.5044254064559937,
+            -0.07276152819395065
+          ]
+        }
+      ]
+    },
+    {
+      "episode": 2,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 3,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 4,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 5,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 6,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 7,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 8,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 9,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 10,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 11,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 12,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 13,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 14,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 15,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 16,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 17,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 18,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 19,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 20,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    }
+  ],
+  "success_count": 0,
+  "total_episodes": 20,
+  "success_rate": 0.0,
+  "mean_return": -50.0,
+  "mean_episode_length": 50.0,
+  "episode_returns": [
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0,
+    -50.0
+  ],
+  "episode_lengths": [
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50
+  ],
+  "success_episodes": [],
+  "failed_episodes": [
+    {
+      "episode": 1,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": [
+        {
+          "step": 0,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.6639593839645386,
+            -0.5194191932678223,
+            -0.099530428647995
+          ]
+        },
+        {
+          "step": 1,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.42696672677993774,
+            -0.46647778153419495,
+            -0.07926151901483536
+          ]
+        },
+        {
+          "step": 2,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.5051424503326416,
+            -0.8912988305091858,
+            -0.026423294097185135
+          ]
+        },
+        {
+          "step": 3,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.7607890963554382,
+            -0.7199284434318542,
+            0.0005211345851421356
+          ]
+        },
+        {
+          "step": 4,
+          "env_obs_dim": 19,
+          "processed_obs_dim": 13,
+          "action": [
+            0.5966059565544128,
+            -0.5044254064559937,
+            -0.07276152819395065
+          ]
+        }
+      ]
+    },
+    {
+      "episode": 2,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 3,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 4,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 5,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 6,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 7,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 8,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 9,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 10,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 11,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 12,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 13,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 14,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 15,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 16,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 17,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 18,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 19,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    },
+    {
+      "episode": 20,
+      "success": "0.0",
+      "return": -50.0,
+      "length": 50,
+      "final_reward": -1.0,
+      "final_info": {
+        "is_success": "0.0"
+      },
+      "trajectory_sample": []
+    }
+  ],
+  "evaluation_errors": [],
+  "std_return": 0.0,
+  "success_mean_return": 0.0,
+  "success_mean_length": 0.0,
+  "failed_mean_return": -50.0,
+  "failed_mean_length": 50.0
+}

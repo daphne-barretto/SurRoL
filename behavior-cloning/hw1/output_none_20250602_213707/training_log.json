@@ -1,0 +1,35 @@
+{
+  "train_losses": [
+    3.0977611136470378,
+    0.7762745618747328,
+    -0.7054164386016567
+  ],
+  "val_losses": [
+    1.71474228998658,
+    -0.09213054174213273,
+    -1.2336097777269448
+  ],
+  "eval_results": {
+    "success_rates": [
+      0.0,
+      0.0
+    ],
+    "eval_returns": [
+      -50.0,
+      -50.0
+    ],
+    "eval_epochs": [
+      0,
+      2
+    ]
+  },
+  "config": {
+    "obs_dim": 19,
+    "action_dim": 5,
+    "condition_type": "none",
+    "use_goal": true,
+    "epochs": 3,
+    "batch_size": 32,
+    "lr": 0.0005
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "resume_summary": {
+    "total_runs": 8,
+    "successful_runs": 8,
+    "success_rate": 1.0,
+    "total_time_minutes": 63.39345373709997
+  },
+  "individual_results": [
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "target_block_and_target_peg",
+        "name": "targetblock_targetpeg_standard"
+      },
+      "run_number": 2,
+      "success": true,
+      "experiment_number": 2,
+      "timestamp": "2025-06-02T22:56:08.294000"
+    },
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "target_block_and_target_peg",
+        "name": "targetblock_targetpeg_standard"
+      },
+      "run_number": 3,
+      "success": true,
+      "experiment_number": 2,
+      "timestamp": "2025-06-02T23:04:19.406281"
+    },
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "one_hot_and_target_peg",
+        "name": "onehot_targetpeg_standard"
+      },
+      "run_number": 1,
+      "success": true,
+      "experiment_number": 3,
+      "timestamp": "2025-06-02T23:12:22.027663"
+    },
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "one_hot_and_target_peg",
+        "name": "onehot_targetpeg_standard"
+      },
+      "run_number": 2,
+      "success": true,
+      "experiment_number": 3,
+      "timestamp": "2025-06-02T23:20:19.545778"
+    },
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "one_hot_and_target_peg",
+        "name": "onehot_targetpeg_standard"
+      },
+      "run_number": 3,
+      "success": true,
+      "experiment_number": 3,
+      "timestamp": "2025-06-02T23:28:20.077421"
+    },
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "one_hot",
+        "name": "onehot_standard"
+      },
+      "run_number": 1,
+      "success": true,
+      "experiment_number": 4,
+      "timestamp": "2025-06-02T23:36:08.404342"
+    },
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "one_hot",
+        "name": "onehot_standard"
+      },
+      "run_number": 2,
+      "success": true,
+      "experiment_number": 4,
+      "timestamp": "2025-06-02T23:43:52.964279"
+    },
+    {
+      "config": {
+        "task": "two_blocks",
+        "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "layers": 3,
+        "hidden_size": 128,
+        "eval_env": "PegTransfer-v0",
+        "device": "cuda",
+        "epochs": 100,
+        "eval_interval": 10,
+        "condition_type": "one_hot",
+        "name": "onehot_standard"
+      },
+      "run_number": 3,
+      "success": true,
+      "experiment_number": 4,
+      "timestamp": "2025-06-02T23:51:36.430808"
+    }
+  ],
+  "timestamp": "2025-06-02T23:51:36.430973"
+}

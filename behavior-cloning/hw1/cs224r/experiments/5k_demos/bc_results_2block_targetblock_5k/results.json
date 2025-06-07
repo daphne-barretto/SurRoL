@@ -1,0 +1,2343 @@
+{
+  "data_spec": {
+    "data_type": "all_blocks_2",
+    "conditioning_type": "target_block",
+    "num_blocks": 2,
+    "has_colors": false,
+    "final_obs_dim": 16
+  },
+  "training": {
+    "train_losses": [
+      -0.4125878604176649,
+      -3.413044084415666,
+      -4.054763966162886,
+      -4.174789049106506,
+      -4.161308163743609,
+      -4.103012675148664,
+      -4.222525859964351,
+      -4.2919411471142705,
+      -4.199461256749769,
+      -4.199851042422258,
+      -4.298750489106558,
+      -4.363208990441278,
+      -4.391527518841993,
+      -4.324932417129385,
+      -4.365994734157031,
+      -4.427183972958311,
+      -4.412591017555886,
+      -4.429165815662693,
+      -4.450588014615888,
+      -4.518877902521009,
+      -4.573339182257143,
+      -4.5610695578041325,
+      -4.643135500437505,
+      -4.630510991481087,
+      -4.625318512146707,
+      -4.708339570803968,
+      -4.6941629733333885,
+      -4.542783690499378,
+      -4.608282253726957,
+      -4.611137710717291,
+      -4.647352118860098,
+      -4.6203097446205605,
+      -4.703208110842901,
+      -4.670167158143449,
+      -4.697023643945393,
+      -4.651617764663561,
+      -4.680627544565526,
+      -4.746069426005799,
+      -4.756603299265735,
+      -4.722084180211614,
+      -4.808679015360041,
+      -4.781946677355305,
+      -4.8153213377867115,
+      -4.759701691057061,
+      -4.816988631764991,
+      -4.7937639304957385,
+      -4.821463540268487,
+      -4.803762726280123,
+      -4.746795803664589,
+      -4.830688766064719,
+      -4.851041488262532,
+      -4.83785430384564,
+      -4.841877296834039,
+      -4.888070648976444,
+      -4.834609875723105,
+      -4.875561082990546,
+      -4.86732204202907,
+      -4.863108170083373,
+      -4.899015239851912,
+      -4.864375267276384,
+      -4.901303007427185,
+      -4.898669547147805,
+      -4.8692570614526485,
+      -4.890585869593098,
+      -4.918592545470676,
+      -4.9518145849660655,
+      -4.942481262483773,
+      -4.938247016602187,
+      -4.945288694184671,
+      -4.956915997623719,
+      -4.912829054682217,
+      -4.9875882069043715,
+      -4.919656112404331,
+      -4.953159278618492,
+      -4.924154503518453,
+      -4.941703830445305,
+      -4.944197931309174,
+      -4.989146542040417,
+      -5.013247986513045,
+      -4.960228793066562,
+      -4.949914839766273,
+      -5.020653697165792,
+      -5.001447417878494,
+      -5.034409345824213,
+      -5.004947539583209,
+      -5.038418273116922,
+      -5.0070135703212335,
+      -5.021676457504799,
+      -4.9704382106386245,
+      -5.025267620908248,
+      -4.981305011933084,
+      -5.030179023818984,
+      -5.006188355129779,
+      -5.023160647209814,
+      -5.032685468512273,
+      -5.0571611445158675,
+      -5.03998621972662,
+      -5.047688338385198,
+      -4.973905493609427,
+      -5.030988888669319,
+      -5.060362450004811,
+      -5.003447565194723,
+      -5.030088415822467,
+      -5.059149716476543,
+      -4.990394592403857,
+      -5.048772740906706,
+      -5.051442806861479,
+      -5.0183052265160795,
+      -5.013444972602096,
+      -5.044120392631501,
+      -5.057024179794329,
+      -5.026668938277965,
+      -4.997766252241467,
+      -5.024367685664768,
+      -5.05409781638199,
+      -5.0169669298834005,
+      -5.00687082200437,
+      -5.025417359133025,
+      -5.06204643046025,
+      -5.048086809789813,
+      -5.048351860436403,
+      -5.082364551695448,
+      -5.013087146685778,
+      -5.072460221905118,
+      -5.038155072656159,
+      -5.047444925445581,
+      -5.056456645627958,
+      -5.074664164988449,
+      -5.0096521641333105,
+      -5.105580075027932,
+      -5.070510833616107,
+      -5.044319181239622,
+      -5.06626609169572,
+      -5.079711917572646,
+      -5.094107512593439,
+      -5.053116194884773,
+      -5.066076794389641,
+      -5.074037647789946,
+      -5.091791903650439,
+      -5.087972873042352,
+      -5.0756819551648995,
+      -5.014898414382046,
+      -5.065304555543626,
+      -5.050942676148747,
+      -5.054031614499276,
+      -5.044785344600678,
+      -5.095528081004345,
+      -5.050720387680262,
+      -5.058417477478852,
+      -5.08999092969752
+    ],
+    "eval_results_history": [
+      [
+        0,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        10,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        20,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        30,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        40,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        50,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        60,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        70,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        80,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        90,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        100,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        110,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        120,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        130,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        140,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ],
+      [
+        149,
+        {
+          "environment_name": "PegTransferTwoBlocksNoColorTargetBlock-v0",
+          "episodes": [
+            {
+              "episode": 1,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 2,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 3,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 4,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 5,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 6,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 7,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 8,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 9,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 10,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 11,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 12,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 13,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 14,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 15,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 16,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 17,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 18,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 19,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            },
+            {
+              "episode": 20,
+              "success": "0.0",
+              "return": -50.0,
+              "length": 50
+            }
+          ],
+          "success_count": 0,
+          "total_episodes": 20,
+          "success_rate": 0.0,
+          "mean_return": -50.0,
+          "std_return": 0.0,
+          "mean_episode_length": 50.0
+        }
+      ]
+    ]
+  },
+  "best_success_rate": 0.0,
+  "final_epoch": 150,
+  "training_summary": {
+    "data_specification": {
+      "data_type": "all_blocks_2",
+      "conditioning_type": "target_block",
+      "num_blocks": 2,
+      "has_colors": false,
+      "final_obs_dim": 16
+    },
+    "training_metrics": {
+      "total_epochs": 150,
+      "total_evaluations": 16,
+      "total_episodes_evaluated": 320,
+      "best_success_rate": 0.0,
+      "final_success_rate": 0.0,
+      "training_duration_minutes": 608.8383014666667
+    },
+    "performance_statistics": {
+      "success_rate_mean": 0.0,
+      "success_rate_std": 0.0,
+      "success_rate_max": 0.0,
+      "success_rate_min": 0.0,
+      "return_mean": -50.0,
+      "return_std": 0.0,
+      "episode_length_mean": 50.0
+    },
+    "learning_curve_analysis": {
+      "loss_improvement": 4.677403069279856,
+      "loss_improvement_percent": 1133.6744286525773,
+      "loss_volatility": 0.4545196380453225,
+      "converged": "True"
+    }
+  }
+}

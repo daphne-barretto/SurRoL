@@ -1,0 +1,41 @@
+{
+  "model_path": "output_one_hot_20250602_215654/final_model_one_hot.pt",
+  "model_config": {
+    "obs_dim": 19,
+    "action_dim": 5,
+    "condition_type": "one_hot",
+    "use_goal": true,
+    "goal_dim": 3,
+    "expected_obs_dim": 23,
+    "dimension_mismatch": true
+  },
+  "evaluation_results": {
+    "success_rate": 0.0,
+    "mean_return": -50.0,
+    "mean_episode_length": 50.0,
+    "num_episodes": 3
+  },
+  "debug_info": {
+    "total_action_errors": 150,
+    "avg_action_errors_per_episode": 50.0,
+    "episodes_with_errors": 3,
+    "condition_type": "one_hot",
+    "compatibility_check": false
+  },
+  "trajectory_analysis": {
+    "success_stats": {
+      "count": 0,
+      "avg_length": 0,
+      "avg_return": 0
+    },
+    "failure_stats": {
+      "count": 3,
+      "avg_length": 50.0,
+      "avg_return": -50.0
+    }
+  },
+  "episode_details": [
+    [
+      -50.0,
+      50,
+      

@@ -1,0 +1,23 @@
+{
+  "data_spec": {
+    "data_type": "all_blocks_2",
+    "conditioning_type": "target_peg",
+    "num_blocks": 2,
+    "has_colors": false,
+    "base_obs_dim": 13,
+    "final_obs_dim": 16,
+    "block_encoding_dim": null
+  },
+  "model_config": {
+    "input_dim": 16,
+    "action_dim": 5,
+    "ob_dim": 16,
+    "use_goal": false,
+    "goal_dim": 0
+  },
+  "training_info": {
+    "epoch": 140,
+    "success_rate": 0.2,
+    "timestamp": "2025-06-06T07:26:41.701376"
+  }
+}

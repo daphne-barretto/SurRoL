@@ -1,0 +1,86 @@
+[
+  {
+    "config": {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "one_hot",
+      "name": "onehot_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    },
+    "run_number": 1,
+    "success": true,
+    "experiment_number": 1,
+    "config_index": 0,
+    "timestamp": "2025-06-02T22:18:14.673321"
+  },
+  {
+    "config": {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "one_hot",
+      "name": "onehot_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    },
+    "run_number": 2,
+    "success": true,
+    "experiment_number": 2,
+    "config_index": 0,
+    "timestamp": "2025-06-02T22:25:57.502449"
+  },
+  {
+    "config": {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "one_hot",
+      "name": "onehot_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    },
+    "run_number": 3,
+    "success": true,
+    "experiment_number": 3,
+    "config_index": 0,
+    "timestamp": "2025-06-02T22:33:41.990860"
+  },
+  {
+    "config": {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "target_block",
+      "name": "targetblock_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    },
+    "run_number": 1,
+    "success": true,
+    "experiment_number": 4,
+    "config_index": 1,
+    "timestamp": "2025-06-02T22:42:15.534780"
+  }
+]

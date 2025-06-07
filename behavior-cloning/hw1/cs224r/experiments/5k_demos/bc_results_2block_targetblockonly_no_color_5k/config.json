@@ -1,0 +1,23 @@
+{
+  "data_spec": {
+    "data_type": "only_target_block_2_no_color",
+    "conditioning_type": "none",
+    "num_blocks": 2,
+    "has_colors": false,
+    "base_obs_dim": 13,
+    "final_obs_dim": 13,
+    "block_encoding_dim": null
+  },
+  "model_config": {
+    "input_dim": 13,
+    "action_dim": 5,
+    "ob_dim": 13,
+    "use_goal": false,
+    "goal_dim": 0
+  },
+  "training_info": {
+    "epoch": 149,
+    "success_rate": 0.0,
+    "timestamp": "2025-06-06T21:29:58.204495"
+  }
+}

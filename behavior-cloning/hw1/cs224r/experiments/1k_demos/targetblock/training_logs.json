@@ -1,0 +1,1614 @@
+{
+  "training": {
+    "train_losses": [
+      3.0020098626867977,
+      0.3689605783509517,
+      -0.9949519270514356,
+      -1.7556520900549963,
+      -2.2878551886736243,
+      -2.704868906931382,
+      -2.9898007229754797,
+      -3.292693101155809,
+      -3.484940883275625,
+      -3.6576950656062,
+      -3.79316981630678,
+      -3.8232190474168335,
+      -3.938681402425169,
+      -3.9168090450645003,
+      -3.770958718331067,
+      -3.901986461021483,
+      -3.847558489734384,
+      -3.894722932517783,
+      -3.8341912052794167,
+      -3.987156454309461,
+      -4.028630990370748,
+      -4.053928856702143,
+      -3.933268901930425,
+      -4.0534734436831465,
+      -4.0457405513245215,
+      -3.975649619890989,
+      -4.097145933175663,
+      -4.068491832206123,
+      -4.056635701999725,
+      -4.204228981629883,
+      -4.121788520434842,
+      -4.123414268025633,
+      -4.251276571372495,
+      -4.216697199670214,
+      -4.213719524156996,
+      -4.105375742590105,
+      -4.197508482132664,
+      -4.143115469690407,
+      -4.154951325690594,
+      -4.275403309004066,
+      -4.211470660071285,
+      -4.193704613242007,
+      -4.270838202275389,
+      -4.175198386480256,
+      -4.229834096742049,
+      -4.277706559063869,
+      -4.24877059663173,
+      -4.21338055339002,
+      -4.407905704435889,
+      -4.142887892734105,
+      -4.1610057016948545,
+      -4.160969049628734,
+      -4.299397778205817,
+      -4.224916242433985,
+      -4.25233666371994,
+      -4.204368935879399,
+      -4.317267735134996,
+      -4.259927114840083,
+      -4.26274586029107,
+      -4.3290182876468215,
+      -4.433725198336041,
+      -4.251843392001107,
+      -4.274470578810229,
+      -4.226374242417673,
+      -4.3621721567843075,
+      -4.2807607473977765,
+      -4.258600929256524,
+      -4.344195494526311,
+      -4.24208384639932,
+      -4.3341156836932955,
+      -4.293654183278212,
+      -4.2800076122304285,
+      -4.257850904743668,
+      -4.31987083706459,
+      -4.342243678963201,
+      -4.245590410564906,
+      -4.266742880873457,
+      -4.3605031380443116,
+      -4.348480134566512,
+      -4.457455246750356,
+      -4.362940665837881,
+      -4.486819094054899,
+      -4.403576995027523,
+      -4.3385820109847595,
+      -4.41077068257298,
+      -4.372022150442068,
+      -4.371297726336109,
+      -4.428944701405711,
+      -4.372123066002072,
+      -4.4213707190150044,
+      -4.360411278384169,
+      -4.418909175000862,
+      -4.430045275311721,
+      -4.3445810118576205,
+      -4.472433346942343,
+      -4.427835624256988,
+      -4.438555621066439,
+      -4.524327540338294,
+      -4.414298309582905,
+      -4.4526038110510555
+    ],
+    "epoch_times": [
+      3.626157760620117,
+      22.755881547927856,
+      2.145761251449585,
+      2.1531245708465576,
+      2.162099599838257,
+      2.1477034091949463,
+      22.765857458114624,
+      2.19043231010437,
+      2.159965753555298,
+      2.1443514823913574,
+      2.180842399597168,
+      24.420324087142944,
+      2.235219955444336,
+      2.2089083194732666,
+      2.2406511306762695,
+      2.242575168609619,
+      22.09226894378662,
+      2.3074166774749756,
+      2.3020498752593994,
+      2.325373411178589,
+      2.3998653888702393,
+      23.26926898956299,
+      2.4698712825775146,
+      2.544858932495117,
+      2.671292543411255,
+      2.825530767440796,
+      24.374274253845215,
+      3.037975788116455,
+      3.14292049407959,
+      3.1657509803771973,
+      3.2581067085266113,
+      22.855921268463135,
+      3.957979679107666,
+      3.9728355407714844,
+      3.9865992069244385,
+      4.014323472976685,
+      24.38888907432556,
+      3.384129285812378,
+      3.424900531768799,
+      3.405700206756592,
+      3.398725748062134,
+      24.50269365310669,
+      3.3471124172210693,
+      3.4636337757110596,
+      3.4568731784820557,
+      3.450597047805786,
+      24.55989694595337,
+      3.5013744831085205,
+      3.5392584800720215,
+      3.6182940006256104,
+      3.667083978652954,
+      27.038233041763306,
+      3.4814600944519043,
+      3.5438971519470215,
+      3.523496389389038,
+      3.5186150074005127,
+      24.084457635879517,
+      3.6551151275634766,
+      3.6575071811676025,
+      3.7116854190826416,
+      3.735597610473633,
+      25.988744020462036,
+      3.6963014602661133,
+      3.751619577407837,
+      3.7747786045074463,
+      3.6300435066223145,
+      27.539339303970337,
+      3.5999538898468018,
+      3.556692123413086,
+      3.570721387863159,
+      3.624380350112915,
+      25.478091955184937,
+      4.31817889213562,
+      4.243681192398071,
+      4.201486587524414,
+      4.1714842319488525,
+      27.09381890296936,
+      4.216989040374756,
+      4.223920106887817,
+      4.286286354064941,
+      4.2982847690582275,
+      26.23110604286194,
+      3.8283097743988037,
+      3.7848408222198486,
+      3.722282886505127,
+      3.8006958961486816,
+      26.738468647003174,
+      3.814422369003296,
+      3.7352051734924316,
+      3.7091197967529297,
+      3.6617002487182617,
+      26.734304666519165,
+      3.7231509685516357,
+      3.7651915550231934,
+      3.687169313430786,
+      3.6217052936553955,
+      25.57775568962097,
+      3.682007312774658,
+      3.6470389366149902,
+      3.7038486003875732
+    ],
+    "total_training_time": 766.2466881275177
+  },
+  "evaluation": {
+    "eval_epochs": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      99
+    ],
+    "success_rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "mean_returns": [
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0
+    ],
+    "std_returns": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "episodes_data": [
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ],
+      [
+        {
+          "episode": 1,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 2,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 3,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 4,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 5,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 6,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 7,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 8,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 9,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        },
+        {
+          "episode": 10,
+          "success": "0.0",
+          "return": -50.0,
+          "length": 50
+        }
+      ]
+    ]
+  },
+  "summary": {
+    "total_epochs": 100,
+    "best_success_rate": 0.0,
+    "best_success_epoch": 0,
+    "final_success_rate": 0.0,
+    "final_mean_return": -50.0
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "model_path": "/home/ubuntu/project/behavior-cloning/hw1/cs224r/cs224r/experiments/priority_bc_experiments_20250602_221018/two_blocks_target_block_and_target_peg_targetblock_targetpeg_standard_run2_target_block_and_target_peg_target_block_and_target_peg/final_model_target_block_and_target_peg.pt",
+  "model_config": {
+    "obs_dim": 19,
+    "action_dim": 5,
+    "condition_type": "target_block_and_target_peg",
+    "use_goal": true
+  },
+  "evaluation_results": {
+    "success_rate": 0.0,
+    "mean_return": -50.0,
+    "mean_episode_length": 50.0,
+    "num_episodes": 10
+  },
+  "trajectory_analysis": {
+    "success_stats": {
+      "count": 0,
+      "avg_length": 0,
+      "avg_return": 0
+    },
+    "failure_stats": {
+      "count": 10,
+      "avg_length": 50.0,
+      "avg_return": -50.0
+    }
+  },
+  "episode_details": [
+    [
+      -50.0,
+      50,
+      

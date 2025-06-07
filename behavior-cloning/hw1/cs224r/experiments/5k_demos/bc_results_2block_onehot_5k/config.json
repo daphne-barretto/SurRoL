@@ -1,0 +1,23 @@
+{
+  "data_spec": {
+    "data_type": "all_blocks_2",
+    "conditioning_type": "one_hot",
+    "num_blocks": 2,
+    "has_colors": false,
+    "base_obs_dim": 13,
+    "final_obs_dim": 15,
+    "block_encoding_dim": 2
+  },
+  "model_config": {
+    "input_dim": 15,
+    "action_dim": 5,
+    "ob_dim": 15,
+    "use_goal": false,
+    "goal_dim": 0
+  },
+  "training_info": {
+    "epoch": 140,
+    "success_rate": 0.05,
+    "timestamp": "2025-06-06T07:33:43.084409"
+  }
+}

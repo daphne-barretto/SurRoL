@@ -1,0 +1,70 @@
+{
+  "args": {
+    "data_dir": "/home/ubuntu/project/SurRoL/surrol/data/two_blocks",
+    "save_dir": "cs224r/experiments",
+    "priority": "high",
+    "runs": 3,
+    "device": "cuda"
+  },
+  "experiments": [
+    {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "one_hot",
+      "name": "onehot_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    },
+    {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "target_block",
+      "name": "targetblock_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    },
+    {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "target_block_and_target_peg",
+      "name": "targetblock_targetpeg_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    },
+    {
+      "task": "two_blocks",
+      "data_file": "data_PegTransfer-v0_random_1000_2025-06-01_10-17-43.npz",
+      "batch_size": 64,
+      "learning_rate": 0.0005,
+      "layers": 3,
+      "hidden_size": 128,
+      "eval_env": "PegTransfer-v0",
+      "device": "cuda",
+      "condition_type": "one_hot_and_target_peg",
+      "name": "onehot_targetpeg_standard",
+      "epochs": 100,
+      "eval_interval": 10
+    }
+  ],
+  "timestamp": "20250602_221018",
+  "total_runs": 12,
+  "estimated_time_minutes": 960.0
+}

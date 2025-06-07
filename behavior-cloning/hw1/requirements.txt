@@ -1,0 +1,19 @@
+mujoco==2.3.3
+numpy<2.0
+gym==0.25.2
+tensorboard==2.19.0
+tensorboardX==2.6.2.2
+matplotlib==3.10.1
+ipython==8.36.0
+moviepy==1.0.3
+swig==4.3.0
+pyvirtualdisplay==3.0
+# PyTorch with CUDA support
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+# Note: For CUDA support, install using:
+# conda install pytorch==2.1.0 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+opencv-python==4.11.0.86
+ipdb==0.13.13
+box2d-py==2.3.8

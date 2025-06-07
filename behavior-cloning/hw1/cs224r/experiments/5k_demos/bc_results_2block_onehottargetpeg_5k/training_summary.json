@@ -1,0 +1,32 @@
+{
+  "data_specification": {
+    "data_type": "all_blocks_2",
+    "conditioning_type": "one_hot_and_target_peg",
+    "num_blocks": 2,
+    "has_colors": false,
+    "final_obs_dim": 18
+  },
+  "training_metrics": {
+    "total_epochs": 150,
+    "total_evaluations": 16,
+    "total_episodes_evaluated": 320,
+    "best_success_rate": 0.2,
+    "final_success_rate": 0.05,
+    "training_duration_minutes": 605.97033695
+  },
+  "performance_statistics": {
+    "success_rate_mean": 0.071875,
+    "success_rate_std": 0.07281987623581902,
+    "success_rate_max": 0.2,
+    "success_rate_min": 0.0,
+    "return_mean": -48.93125,
+    "return_std": 2.9041792680441914,
+    "episode_length_mean": 50.0
+  },
+  "learning_curve_analysis": {
+    "loss_improvement": 5.675818031081455,
+    "loss_improvement_percent": 1715.6775000214932,
+    "loss_volatility": 0.5651858398955181,
+    "converged": true
+  }
+}
