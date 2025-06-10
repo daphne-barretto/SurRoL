@@ -99,6 +99,7 @@ ENVIRONMENT_MAPPINGS = {
     (DataType.ALL_BLOCKS_COLORED_2, ConditioningType.TARGET_BLOCK): "PegTransferTargetBlock-v0",
     (DataType.ALL_BLOCKS_COLORED_2, ConditioningType.RGBA_COLOR): "PegTransferTwoBlocksFourTuple-v0", 
     (DataType.ALL_BLOCKS_COLORED_2, ConditioningType.ONE_HOT_AND_TARGET_PEG): "PegTransferTwoBlocksOneHotTargetPeg-v0",  # CORRECT 2-block env!
+    (DataType.ALL_BLOCKS_COLORED_2, ConditioningType.TARGET_BLOCK_AND_PEG): "PegTransferTwoBlocksTargetBlockTargetPeg-v0",  # NEW: 2-block colored target block and peg
     
     # 4-block environments
     (DataType.ALL_BLOCKS_4, ConditioningType.NONE): "PegTransfer-v0",
