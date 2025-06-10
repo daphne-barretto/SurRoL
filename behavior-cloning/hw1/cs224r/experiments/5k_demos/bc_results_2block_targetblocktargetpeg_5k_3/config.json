@@ -16,8 +16,8 @@
     "goal_dim": 0
   },
   "training_info": {
-    "epoch": 0,
-    "success_rate": 0.0,
-    "timestamp": "2025-06-07T18:57:27.738763"
+    "epoch": 149,
+    "success_rate": 0.2,
+    "timestamp": "2025-06-09T05:30:57.818527"
   }
 }
