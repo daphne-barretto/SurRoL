@@ -88,7 +88,6 @@ where “tbo” stands for “target block only.”
 ./herdemo_pegtransfer_color_onehottargetpeg.sh   # conditioned on one hot block encoding and target peg position
 ./herdemo_pegtransfer_color_targetblock.sh    # conditioned on goal block position
 ./herdemo_pegtransfer_color_targetblocktargetpeg.sh    # conditioned on goal block and target peg positions
-
 ```
 
 ## License
