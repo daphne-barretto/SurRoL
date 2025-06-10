@@ -1,6 +1,6 @@
-# Curriculum Learning for Long-Horizon, Goal-Oriented Surgical Robotics Tasks
+# Goal-Conditioned Reinforcement Learning for Surgical Robotic Manipulation
 
-Surgical robotics often involves long-horizon, goal-oriented tasks; sparse rewards in these scenarios create challenges in exploration that can result in low data and compute efficiency. Prior work has shown that additional data, such as demonstrations and sequences of learned skills for a task, can improve training efficiency and policy effectiveness at the cost of requiring potentially hard-to-obtain data. We apply curriculum learning, a data ordering strategy that gradually introduces more complex training concepts, to long-horizon, goal-oriented surgical robotics tasks to address these challenges without additional data. We find that in some tasks, curriculum learning can perform comparable to having demonstration data, supporting its potential in the surgical robotics domain. In more complex tasks, many curriculum learning strategies still struggle to learn precise manipulation, such as grasping objects. However, by exploring a variety of curricula, we make progress towards using curriculum learning to enable initial grasping behaviors to be learned in training for surgical robotics tasks.
+Surgical robotic systems must be capable of handling ambiguous manipulation tasks where multiple similar objects require explicit goal specification. We investigate how different goal-conditioning methods affect learning in ambiguous robotic manipulation using a goal-conditioned peg transfer task where a robot moves specified blocks among multiple colored blocks. We compare conditioning on spatial goal representations, i.e. 3D coordinates, with semantic representations, such as one-hot encodings and color specifications, across two peg transfer tasks of differing complexity using DDPG with HER. Spatial conditioning consistently outperforms semantic approaches, with performance gaps increasing as task complexity grows. In a two-block peg transfer environment, spatial methods achieve ~60\% success while semantic methods reach 20-40\%. In a four-block environment, spatial methods maintain 40-50\% success while semantic methods fail completely. Qualitative video analysis reveals semantic methods fail primarily due to manipulation control problems, and in the more complex four-block environment, may also fail due to goal identification issues. These results demonstrate that spatial coordinates offer direct, actionable guidance for robot control and task execution, whereas semantic representations may impose abstraction challenges that worsen with greater task complexity. Our findings offer important insights for the design of goal-conditioned surgical robotic systems.
 
 ## Installation
 
@@ -36,13 +36,59 @@ pip install -e .[all]
 
 ## Get started
 
-[test_psm.ipynym](./tests/test_psm.ipynb) allows you to start the environment, load the robot, and test the kinematics.
+The [test_psm.ipynb notebook](./tests/test_psm.ipynb) allows you to start the environment, load the robot, and test the kinematics.
 
 The [./run directory](./run) contains sample bash files used to train policies with a specified set of parameters.
 
-## Real-World Robots
+The [./surrol/data directory](./surrol/data) contains data_generation.py to generate the heuristic-based demonstration data and data_postprocessing.py to post-process the goal-conditioning.
 
-The robot control API follows [the da Vinci Research Kit (dVRK)](https://github.com/jhu-dvrk/dvrk-ros/tree/master/dvrk_python/src/dvrk), which is compatible with the real-world dVRK robots.
+The [./surrol/tasks directory](./surrol/tasks) contains peg_transfer*.py files that implement the peg transfer tasks with two blocks and four blocks.
+
+The [./analysis/plot_results.ipynb notebook](./analysis/plot_results.ipynb) is used for quantitative analysis and generating plots.
+
+## How to run experiments
+First `cd run`, then run the following bash scripts for each experiment:
+
+### Baseline
+```
+./herdemo_pegtransfer_two_blocks_onlywithtargetblock.sh  # two blocks
+./herdemo_pegtransfer_tbo.sh  # four blocks
+```
+where “tbo” stands for “target block only.”
+
+### DDPG with HER Goal Conditioning Experiments: Two Blocks
+```
+# Observations are robot state and positions of all blocks
+./herdemo_pegtransfer_two_blocks_nocolor_fourtuple.sh   # conditioned on RGBA color encoding
+./herdemo_pegtransfer_two_blocks_nocolor_onehot.sh       # conditioned on one hot block encoding
+./herdemo_pegtransfer_two_blocks_nocolor_onehottargetpeg.sh   # conditioned on one hot block encoding and target peg position
+./herdemo_pegtransfer_two_blocks_nocolor_targetblock.sh  # conditioned on goal block position
+./herdemo_pegtransfer_two_blocks_nocolor_targetblocktargetpeg.sh   # conditioned on goal block and target peg positions
+
+# Observations are robot state, positions of all blocks, and color of all blocks
+./herdemo_pegtransfer_two_blocks_fourtuple.sh   # conditioned on RGBA color encoding
+./herdemo_pegtransfer_two_blocks_onehot.sh       # conditioned on one hot block encoding
+./herdemo_pegtransfer_two_blocks_onehottargetpeg.sh   # conditioned on one hot block encoding and target peg position
+./herdemo_pegtransfer_two_blocks_targetblock.sh  # conditioned on goal block position
+./herdemo_pegtransfer_two_blocks_targetblocktargetpeg.sh   # conditioned on goal block and target peg positions
+```
+
+### DDPG with HER Goal Conditioning Experiments: Four Blocks
+```
+# Observations are robot state, positions of all blocks
+./herdemo_pegtransfer_fourtuple.sh       # conditioned on RGBA color encoding
+./herdemo_pegtransfer_onehot.sh       # conditioned on one hot block encoding
+./herdemo_pegtransfer_onehottargetpeg.sh   # conditioned on one hot block encoding and target peg position
+./herdemo_pegtransfer_targetblock.sh    # conditioned on goal block position
+./herdemo_pegtransfer_targetblocktargetpeg.sh    # conditioned on goal block and target peg positions
+
+# Observations are robot state, positions of all blocks, and color of all blocks
+./herdemo_pegtransfer_color_fourtuple.sh       # conditioned on RGBA color encoding
+./herdemo_pegtransfer_color_onehot.sh       # conditioned on one hot block encoding
+./herdemo_pegtransfer_color_onehottargetpeg.sh   # conditioned on one hot block encoding and target peg position
+./herdemo_pegtransfer_color_targetblock.sh    # conditioned on goal block position
+./herdemo_pegtransfer_color_targetblocktargetpeg.sh    # conditioned on goal block and target peg positions
+```
 
 ## License
 
@@ -53,4 +99,5 @@ This project is released under the [MIT license](LICENSE).
 The code is built with custom versions of the [**Sur**gical **Ro**bot **L**earning platform (**SurRoL**)](https://med-air.github.io/SurRoL/), [OpenAI Baselines](https://github.com/openai/baselines), and [Gym 0.15.7](https://github.com/openai/gym/releases/tag/0.15.7).
 
 ## Contact
-For any questions, please feel free to email <a href="mailto:daphne.barretto@stanford.edu">daphne.barretto@stanford.edu</a> and <a href="mailto:meganliu@stanford.edu">meganliu@stanford.edu</a>.
+For any questions, please feel free to email <a href="mailto:daphne.barretto@stanford.edu">daphne.barretto@stanford.edu</a>, <a href="mailto:alylee15@stanford.edu">alylee15@stanford.edu</a>, and <a href="mailto:elsabis@stanford.edu">elsabis@stanford.edu</a>.
+
