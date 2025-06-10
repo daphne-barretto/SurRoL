@@ -1,0 +1,5 @@
+Method,Experiment Names,Training Mean (%),Training Std (%),Training Run 1 (%),Training Run 2 (%),Training Run 3 (%),Evaluation Mean (%),Evaluation Std (%),Evaluation Run 1 (%),Evaluation Run 2 (%),Evaluation Run 3 (%),Performance Gap (%)
+Spatial without Color,targetblocktargetpeg,18.3,12.5,35.0,5.0,15.0,10.0,1.6,10.0,12.0,8.0,8.3
+Spatial with Color,targetblocktargetpeg_color,15.0,4.1,15.0,10.0,20.0,4.3,1.7,6.0,2.0,5.0,10.7
+Semantic without Color,onehottargetpeg,18.3,2.4,20.0,15.0,20.0,7.7,4.1,3.0,13.0,7.0,10.7
+Semantic with Color,onehottargetpeg_color,25.0,10.8,15.0,40.0,20.0,2.7,2.4,1.0,6.0,1.0,22.3
